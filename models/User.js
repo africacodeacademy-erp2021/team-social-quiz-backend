@@ -10,22 +10,11 @@ const userSchema = new mongoose.Schema(
       unique: true
     },
 
-    refreshToken: {
-      token: { type: String },
-      isRevoked: { type: Boolean, default: false },
-      revokeTime: { type: String },
-      refreshLimit: { type: Number, default: 100 },
-      refreshCount: { type: Number, default: 0 },
-      tokenLogs: [],//ip, date, accessToken
-    },
-    accessToken: {
-      token: { type: String },
-      isRevoked: { type: Boolean, default: false },
-      revokeTime: { type: String }
-    },
+    refreshToken: { type:String },
+    accessToken: {  type:String },
     role: {
       type: String,
-      default: Role.ACCOUNT_ADMIN
+      default: Role.PLAYER
     },
 
     status: {
