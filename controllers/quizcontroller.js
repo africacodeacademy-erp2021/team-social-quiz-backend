@@ -8,13 +8,17 @@ async function main() {
 
 const quizSchema = new mongoose.Schema({
   published_state:{
-  type: String,  
+  type: Boolean,  
   required:[true,'Published State required'] 
   }, 
   popularity:{
-     type:String,
+     type:Number,
      required: [true,'Popularity required'] 
   },
+  category_id:{
+    type:String,
+    required: [true,'Popularity required'] 
+ },
   questions_id: {
     type: String,
     unique: true,
