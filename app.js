@@ -41,4 +41,24 @@ mongoose.connection.on("error", err => {
 
 
 
+/**
+ * Create Express server.
+ */
+const app = express();
+
+/**
+ * Express configuration.
+ */
+app.set("host", "127.0.0.1");
+app.set("port", process.env.PORT);
+
+
+app.listen(app.get("port"), () => {
+    console.log(
+        "%s App is running at http://localhost:%d in %s mode",
+        chalk.green("✓"),
+        app.get("port")
+    );
+});
+
 module.exports = app;
