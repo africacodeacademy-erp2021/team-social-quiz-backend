@@ -26,15 +26,15 @@ const Quiz = mongoose.model('Quiz', quizSchema);
 
 const quiz=new Quiz();
 
-Quiz.path("questions_id").validate(function (value) {
-  this.model("Quiz").count({ questions_id: value }, function (error, count) {
+quiz.path("questions_id").validate(function (value) {
+  this.model("quiz").count({ questions_id: value }, function (error, count) {
     if (error) {
        console.log(error);  
       return error;
      
     }
     else{
-        Quiz.save();
+        quiz.save();
     }
   });
 });
