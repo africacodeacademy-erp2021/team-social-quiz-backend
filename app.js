@@ -39,7 +39,17 @@ mongoose.connection.on("error", err => {
   process.exit();
 });
 
+/**
+ * Controllers.
+ */
+ const userController = require("./controllers/user");
 
+/**
+ * User Routes
+ * 
+ * TODO: Protect user routes
+ */
+ app.get("/users", userController.getAllUsers);
 
 /**
  * Create Express server.
