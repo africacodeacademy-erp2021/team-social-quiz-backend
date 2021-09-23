@@ -24,19 +24,23 @@ const quizSchema = new mongoose.Schema({
   const Quiz = mongoose.model('Quiz', quizSchema);
   const quiz=new Quiz();
   
-  quiz.pre('save',[
-    check('published_state', 'published state should be a boolean').not().isEmpty().isBoolean(),
-    check('popularity', 'popularity should be a number').not().isEmpty().isInt(),
-    check('category_id', 'category id should be a string').not().isEmpty().isString(),
-    check('questions_id', 'questions id should be a string').not().isEmpty().isString(),
-  ],
-   function (req, res) {
-    const errors = validationResult(req);
-    console.log(req.body);
-
-    if (!errors.isEmpty()) {
-      return res.status(422).jsonp(errors.array());
-    } else {
+  quiz.pre('save',function (next) {
+      
+   
+     if(!this.published_state.isBoolean()){
+        console.error("Value not boolean");
+     }
+    else if(!this.popularity.isInteger()){
+        console.error("Value not a number");
+     }
+     else if(!this.category_id.isString()){
+        console.error("Value not characters");
+     }
+     else if(!this.questions_id.isString()){
+        console.error("Value not characters");
+     }
+     else {
       res.send({});
+      next();
     }
   });
