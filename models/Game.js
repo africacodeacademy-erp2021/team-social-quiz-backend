@@ -4,7 +4,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const GameSchema = new mongoose.Schema(
   {
-    quiz: {
+    quiz_id: {
       type: ObjectId,
       ref: "Quiz",
     },
@@ -27,10 +27,7 @@ const GameSchema = new mongoose.Schema(
         type: Object,
 
     },
-    category: {
-        type: ObjectId,
-        ref: "Category"
-    },
+    
     leaderboard: {
         type:ObjectId,
         ref: "Leaderboard",
