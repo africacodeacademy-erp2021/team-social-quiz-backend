@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/aca_tsq", { useNewUrlParser: true });
 const ObjectId = mongoose.Schema.Types.ObjectId;
 const { omitUserDetails } = require("../utils/ObjectUtils");
 const { Role } = require("../utils/Constants");
@@ -7,14 +8,14 @@ const userSchema = new mongoose.Schema(
   {
     email: {
       type: String,
-      unique: true
+      unique: true,
     },
 
-    refreshToken: { type:String },
-    accessToken: {  type:String },
+    refreshToken: { type: String },
+    accessToken: { type: String },
     role: {
       type: String,
-      default: Role.PLAYER
+      default: Role.PLAYER,
     },
 
     status: {
@@ -25,26 +26,24 @@ const userSchema = new mongoose.Schema(
       name: {
         firstname: {
           type: String,
-          trim: true
+          trim: true,
         },
         lastname: {
           type: String,
-          trim: true
-        }
+          trim: true,
+        },
       },
       gender: String,
-    }
+    },
   },
   {
     timestamps: true,
     toJSON: {
-      transform: omitUserDetails
-    }
+      transform: omitUserDetails,
+    },
   }
 );
 
-
-
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("Users", userSchema);
 
 module.exports = User;
