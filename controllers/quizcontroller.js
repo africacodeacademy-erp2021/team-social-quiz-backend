@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 main().catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect("mongodb://localhost:27017/test");
+  await mongoose.connect("mongodb://localhost:1000/test");
 }
 
 const quizSchema = new mongoose.Schema({
@@ -30,16 +30,5 @@ const Quiz = mongoose.model('Quiz', quizSchema);
 
 const quiz=new Quiz();
 
-quiz.path("questions_id").validate(function (value) {
-  this.model("quiz").count({ questions_id: value }, function (error, count) {
-    if (error) {
-       console.log(error);  
-      return error;
-     
-    }
-    else{
-        quiz.save();
-    }
-  });
-});
+
 
