@@ -5,12 +5,12 @@ const Answers_Schema = new mongoose.Schema(
   {
     is_correct: {
       type: Boolean,
-      default: true,
+      default: false,
     },
 
-    answer_Text: {
+    text: {
       type: String,
-      unique: true,
+      unique: false,
     },
 
     question_id: {
