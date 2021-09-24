@@ -1,3 +1,5 @@
+const { getPlatformUsers } = require("../utils/quizUtils");
+
 exports.createQuiz = async (req, res) => {
   try {
     const existingQuiz = await User.findOne({
@@ -29,20 +31,29 @@ exports.createQuiz = async (req, res) => {
     return res.sendStatus(500);
   }
 };
-exports.getAllQuiz = async (req, res) =>{
-  try{
 
-      let quizList = await getPlatformQuiz()
-      
-      if(quizList.length > 0 ){
-           return res.send(quizList)
-      }else{
-          return res.status(204).send(quizList)
-      }
-      
+exports.getAllQuiz = async (req, res) => {
+  try {
+    let quizList = await getPlatformQuiz();
 
-  }catch(error){
-      return res.sendStatus(500)
+    if (quizList.length > 0) {
+      return res.send(quizList);
+    } else {
+      return res.status(204).send(quizList);
+    }
+  } catch (error) {
+    return res.sendStatus(500);
+  }
+};
+
+exports.getOneQuiz = async (req, res) => {
+  
+    let quiz = await this.findOne(req.body.title);
+    if (!quiz) {
+     throw new Error('Quiz not found');
+    }
+  else{
+    return res.send(quiz)
   }
   
-}
+   }
