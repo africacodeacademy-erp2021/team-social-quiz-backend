@@ -8,39 +8,43 @@ const GameSchema = new mongoose.Schema(
       ref: "Quiz",
     },
 
-    player_answers:{
-      type: Array, 
+    player_answers: {
+      type: Array,
     },
 
-    winner:{
-      type:ObjectId,
-      ref: "Leaderboard",
+    winner: {
+      type: ObjectId,
+      ref: "users",
     },
-    
-    winning_score:{
-        type: Number,
-        default: 0,
+
+    winning_score: {
+      type: Number,
+      default: 0,
     },
 
     winning_team: {
-        type: Object,
-
+      type: Object,
     },
-    
+
     leaderboard: {
-        type:ObjectId,
-        ref: "Leaderboard",
+      type: ObjectId,
+      ref: "Leaderboard",
     },
 
     teams: {
-        type: Array,
+      type: Array,
     },
 
+    start_time: {
+      type: Date,
+    },
+
+    end_time: {
+      type: Date,
+    },
   },
   {
-    
-    timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
-    
+    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
   }
 );
 
