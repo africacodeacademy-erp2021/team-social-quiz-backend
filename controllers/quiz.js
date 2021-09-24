@@ -47,16 +47,29 @@ exports.getAllQuiz = async (req, res) => {
 };
 
 exports.getOneQuiz = async (req, res) => {
-  try{
+  try {
     let quiz = await Quiz.findOne(req.body.title);
     if (!quiz) {
-     throw new Error('Quiz not found');
+      throw new Error("Quiz not found");
+    } else {
+      return res.send(quiz);
     }
-  else{
-    return res.send(quiz)
+  } catch (error) {
+    return res.sendStatus(500);
   }
-}catch(error){
-  return res.sendStatus(500)
-}
-  
-   }
+};
+
+exports.getAllQs = async (req, res) => {
+  try {
+    let quiz = await Quiz.findOne(req.body.title);
+    let QsList = await User.find({questions}).exec();
+
+    if (QsList.length > 0) {
+      return res.send(QsList);
+    } else {
+      return res.status(204);
+    }
+  } catch (error) {
+    return res.sendStatus(500);
+  }
+};
