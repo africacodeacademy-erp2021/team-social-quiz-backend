@@ -22,8 +22,8 @@ const userSchema = new mongoose.Schema(
     },
 
     channel:{
-      type:ObjectId,
-      ref: "Socials",
+      type: String,
+      
     },
 
     platform_points:{
