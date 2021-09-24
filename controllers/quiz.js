@@ -61,8 +61,8 @@ exports.getAllQs = async (req, res) => {
     let quiz = await Quiz.findOne(req.body.title);
     let QsList = await User.find({ questions }).exec();
 
-    if (QsList.length > 0) {
-      return res.send(QsList);
+    if (quiz.questions.length > 0) {
+      return res.send(quiz.questions);
     } else {
       return res.status(204);
     }
