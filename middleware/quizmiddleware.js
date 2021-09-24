@@ -1,47 +1,35 @@
-const mongoose = require("mongoose");
-const {check, validationResult} = require('express-validator/check');
+exports.validateQuiz = async (req, res) => {
+   try {
+      if(!req.body.title.isString()){
+         console.error("Value should be only characters");
+      }
+     else if(!req.body.description.isString()){
+         console.error("Value should be only characters");
+      }
+      else if(!Array.isArray(req.body.questions)){
+         console.error("Value should be an array");
+      }
+      else if(!req.body.category_id.isString()){
+         console.error("Value should be only characters");
+      }
+      else if(!Array.isArray(req.body.games)){
+         console.error("Value be an array");
+      }
+      else if(!req.body.is_published.isBoolean()){
+         console.error("Value should be boolean");
+      }
+      else if(!req.body.popularity.isInteger()){
+         console.error("Value should be number");
+      }
+      else if(!req.body.total_score.isInteger()){
+         console.error("Value should be a number");
+      }
+      else {
+       res.send({});
+       next();
+     }
 
-const quizSchema = new mongoose.Schema({
-    published_state:{
-    type: Boolean,  
-    required:[true,'Published State required'] 
-    }, 
-    popularity:{
-       type:Number,
-       required: [true,'Popularity required'] 
-    },
-    category_id:{
-      type:String,
-      required: [true,'Popularity required'] 
-   },
-    questions_id: {
-      type: String,
-      unique: true,
-      required: [true,'Questions ID required'] 
-    },
-  });
-  
-  const Quiz = mongoose.model('Quiz', quizSchema);
-  const quiz=new Quiz();
-  
-
-  quiz.pre('save',function (next) {
-      
-   
-     if(!this.published_state.isBoolean()){
-        console.error("Value not boolean");
-     }
-    else if(!this.popularity.isInteger()){
-        console.error("Value not a number");
-     }
-     else if(!this.category_id.isString()){
-        console.error("Value not characters");
-     }
-     else if(!this.questions_id.isString()){
-        console.error("Value not characters");
-     }
-     else {
-      res.send({});
-      next();
+   } catch (error) {
+      return res.sendStatus(500);
     }
-  });
+   }
