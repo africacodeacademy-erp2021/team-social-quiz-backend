@@ -47,7 +47,7 @@ exports.getAllQuiz = async (req, res) => {
 };
 
 exports.getOneQuiz = async (req, res) => {
-  
+  try{
     let quiz = await this.findOne(req.body.title);
     if (!quiz) {
      throw new Error('Quiz not found');
@@ -55,5 +55,8 @@ exports.getOneQuiz = async (req, res) => {
   else{
     return res.send(quiz)
   }
+}catch(error){
+  return res.sendStatus(500)
+}
   
    }
