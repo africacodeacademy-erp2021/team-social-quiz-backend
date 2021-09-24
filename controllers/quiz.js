@@ -2,12 +2,11 @@ const { getPlatformUsers } = require("../utils/quizUtils");
 
 exports.createQuiz = async (req, res) => {
   try {
-    const existingQuiz = await User.findOne({
+    const existingQuiz = await Quiz.findOne({
       title: req.body.title,
     }).lean(true);
     if (existingQuiz) {
-      res.status(403);
-      return res.json(errorFunction(true, "Quiz of that title already exists"));
+      res.sendStatus(403);
     } else {
       const newQuiz = await Quiz.create({
         title: req.body.title,
@@ -16,12 +15,10 @@ exports.createQuiz = async (req, res) => {
         category_id: req.body.category_id,
         games: req.body.games,
         is_published: req.body.is_published,
-        popularity: req.body.popularity,
         total_score: req.body.total_score,
       });
       if (newQuiz) {
-        res.status(201);
-        console.log("Quiz succefully created");
+        return res.send(newQuiz)
       } else {
         res.status(403);
         console.log("Quiz not succefully created");
@@ -62,7 +59,7 @@ exports.getOneQuiz = async (req, res) => {
 exports.getAllQs = async (req, res) => {
   try {
     let quiz = await Quiz.findOne(req.body.title);
-    let QsList = await User.find({questions}).exec();
+    let QsList = await User.find({ questions }).exec();
 
     if (QsList.length > 0) {
       return res.send(QsList);
