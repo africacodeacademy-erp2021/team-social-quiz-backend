@@ -13,5 +13,13 @@ mongoose.connection
   });
 
 const { User } = require("./User");
-const Category = require("./Category");
+const { Category } = require("./Category");
 const { Game } = require("./Game");
+const { Answers } = require("./Answers");
+const { Socials } = require("./Socials");
+const { Quiz } = require("./Quiz");
+const { Leaderboard } = require("./Leaderboard");
+const { Question } = require("./Question");
+
+
+
