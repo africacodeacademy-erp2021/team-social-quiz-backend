@@ -8,6 +8,10 @@ const GameSchema = new mongoose.Schema(
       ref: "Quiz",
     },
 
+    players: {
+      type: Array,
+    },
+
     player_answers: {
       type: Array,
     },
@@ -44,7 +48,7 @@ const GameSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
+    timestamps: true,
   }
 );
 
