@@ -6,7 +6,7 @@
  */
 exports.getPlatformQuiz = async () =>{
   try{
-    let users = await User.find({}).exec()
+    let quiz = await Quiz.find({}).exec()
     return Promise.resolve(quiz)
   }catch(error){
     return Promise.reject(error)
