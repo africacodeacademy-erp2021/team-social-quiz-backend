@@ -48,7 +48,7 @@ exports.getAllQuiz = async (req, res) => {
 
 exports.getOneQuiz = async (req, res) => {
   try{
-    let quiz = await this.findOne(req.body.title);
+    let quiz = await Quiz.findOne(req.body.title);
     if (!quiz) {
      throw new Error('Quiz not found');
     }
