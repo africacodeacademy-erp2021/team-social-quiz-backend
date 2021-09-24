@@ -24,6 +24,7 @@ const quizSchema = new mongoose.Schema({
   const Quiz = mongoose.model('Quiz', quizSchema);
   const quiz=new Quiz();
   
+
   quiz.pre('save',function (next) {
       
    
