@@ -1,8 +1,8 @@
 /**
- * getPlatformUsers
+ * getPlatformQuiz
  * 
- * returns all platform users
- * @returns Resolved promise with Platform users
+ * returns all platform Quizes
+ * @returns Resolved promise with Platform Quizes
  */
 exports.getPlatformQuiz = async () =>{
   try{
