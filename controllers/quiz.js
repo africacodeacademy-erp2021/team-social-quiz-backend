@@ -1,4 +1,4 @@
-const { getPlatformUsers } = require("../utils/quizUtils");
+const { getPlatformQuiz } = require("../utils/quizUtils");
 
 exports.createQuiz = async (req, res) => {
   try {
@@ -65,6 +65,19 @@ exports.getAllQs = async (req, res) => {
       return res.send(quiz.questions);
     } else {
       return res.status(204);
+    }
+  } catch (error) {
+    return res.sendStatus(500);
+  }
+};
+exports.updateQuiz = async (req, res) => {
+  try {
+    let quiz = await Quiz.findOne(req.body.title);
+    if (!quiz) {
+      throw new Error("Quiz not found");
+    } else {
+      
+      return res.send(quiz);
     }
   } catch (error) {
     return res.sendStatus(500);
