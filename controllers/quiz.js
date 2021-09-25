@@ -4,7 +4,7 @@ exports.createQuiz = async (req, res) => {
   try {
     const existingQuiz = await Quiz.findOne({
       title: req.body.title,
-    }).lean(true);
+    }).lean(true).exec();
     if (existingQuiz) {
       res.sendStatus(403);
     } else {
