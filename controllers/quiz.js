@@ -18,7 +18,7 @@ exports.createQuiz = async (req, res) => {
         total_score: req.body.total_score,
       });
       if (newQuiz) {
-        return res.send(newQuiz)
+        return res.send(newQuiz);
       } else {
         res.status(403);
         console.log("Quiz not succefully created");
@@ -59,7 +59,6 @@ exports.getOneQuiz = async (req, res) => {
 exports.getAllQs = async (req, res) => {
   try {
     let quiz = await Quiz.findOne(req.body.title);
-    let QsList = await User.find({ questions }).exec();
 
     if (quiz.questions.length > 0) {
       return res.send(quiz.questions);
@@ -76,7 +75,6 @@ exports.updateQuiz = async (req, res) => {
     if (!quiz) {
       throw new Error("Quiz not found");
     } else {
-      
       return res.send(quiz);
     }
   } catch (error) {
