@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/aca_tsq", { useNewUrlParser: true });
 const ObjectId = mongoose.Schemta.Types.ObjectId;
 
 const QuizSchema = new mongoose.Schema(
@@ -27,7 +26,7 @@ const QuizSchema = new mongoose.Schema(
 
     is_published: {
       type: Boolean,
-      default: true,
+      default: false,
     },
 
     popularity: {
@@ -41,7 +40,7 @@ const QuizSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
+    timestamps: true ,
   }
 );
 
