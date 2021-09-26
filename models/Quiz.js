@@ -26,7 +26,7 @@ const QuizSchema = new mongoose.Schema(
 
     is_published: {
       type: Boolean,
-      default: true,
+      default: false,
     },
 
     popularity: {
@@ -40,7 +40,7 @@ const QuizSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
+    timestamps: true,
   }
 );
 
