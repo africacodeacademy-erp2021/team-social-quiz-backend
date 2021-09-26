@@ -7,7 +7,7 @@ exports.Quiz = async () => {
    * find Quiz, set its published status to true and return the updated quiz.
    */
 
-  router.get("/models/Quiz", async (req, res) => {
+  router.get("/Quiz", async (req, res) => {
     try {
       const { title } = req.body;
       const QuizToPublish = await quizzes
