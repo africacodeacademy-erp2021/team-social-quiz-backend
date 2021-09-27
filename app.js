@@ -7,6 +7,10 @@
  const mongoose = require("mongoose");
  const mongoSanitize = require('express-mongo-sanitize');
 
+/**
+ * Create Express server.
+ */
+const app = express();
 
  /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -51,10 +55,7 @@ mongoose.connection.on("error", err => {
  */
  app.get("/users", userController.getAllUsers);
 
-/**
- * Create Express server.
- */
-const app = express();
+
 
 /**
  * Express configuration.
