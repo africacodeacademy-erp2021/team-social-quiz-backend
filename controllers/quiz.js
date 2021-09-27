@@ -4,7 +4,9 @@ exports.createQuiz = async (req, res) => {
   try {
     const existingQuiz = await Quiz.findOne({
       title: req.body.title,
-    }).lean(true).exec();
+    })
+      .lean(true)
+      .exec();
     if (existingQuiz) {
       res.sendStatus(403);
     } else {
@@ -69,12 +71,34 @@ exports.getAllQs = async (req, res) => {
     return res.sendStatus(500);
   }
 };
+exports.getOneQ = async (req, res) => {
+  try {
+    let quiz = await Quiz.findOne(req.body.title);
+
+    if (quiz.questions.length > 0) {
+      return res.send(quiz.questions);
+    } else {
+      return res.status(204);
+    }
+  } catch (error) {
+    return res.sendStatus(500);
+  }
+};
 exports.updateQuiz = async (req, res) => {
   try {
     let quiz = await Quiz.findOne(req.body.title);
+
     if (!quiz) {
       throw new Error("Quiz not found");
     } else {
+      quiz.updateOne({},
+        {
+          description: req.body.description,
+          questions: req.body.questions,
+          category_id: req.body.category_id,
+          games: req.body.games,
+        }
+      );
       return res.send(quiz);
     }
   } catch (error) {
