@@ -76,7 +76,8 @@ exports.getOneQ = async (req, res) => {
     let quiz = await Quiz.findOne(req.body.title);
 
     if (quiz.questions.length > 0) {
-      return res.send(quiz.questions);
+      index = Math.floor(Math.random() * questions.length);
+      return res.send(quiz.questions[index]);
     } else {
       return res.status(204);
     }
