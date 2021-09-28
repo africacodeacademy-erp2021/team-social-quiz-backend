@@ -30,7 +30,7 @@ exports.createQuiz = async (req, res) => {
       }
     }
   } catch (error) {
-    return res.sendStatus(500);
+    return res.send("something is wrong");
   }
 };
 

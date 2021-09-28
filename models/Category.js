@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/aca_tsq", { useNewUrlParser: true });
+
 
 const CategorySchema = new mongoose.Schema(
   {

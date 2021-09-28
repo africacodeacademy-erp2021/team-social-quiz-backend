@@ -49,17 +49,15 @@ mongoose.connection.on("error", err => {
  */
  const userController = require("./controllers/user");
  const quizController = require("./controllers/quiz");
+
+ 
 /**
  * User Routes
  * 
  * TODO: Protect user routes
  */
- app.get("/users", userController.getAllUsers);
- app.get("/quiz", quizController.getAllQuiz);
- app.post('/createQuiz', function(req, res){
-  quizController.createQuiz
-});
-
+ 
+ app.post("/createQuiz",quizController.createQuiz);
 
 /**
  * Express configuration.
