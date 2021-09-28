@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-exports.getAllUsers = async()=>{
+exports.getAllUsers = async(req, res)=>{
 
     try{
         router.get('/users', async (req, res) => {
