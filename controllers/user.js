@@ -1,3 +1,7 @@
+// Module imports
+
+const User = require('../models/User');
+
 const { getPlatformUsers } = require("../utils/userUtils")
 
 exports.getAllUsers = async (req, res) =>{

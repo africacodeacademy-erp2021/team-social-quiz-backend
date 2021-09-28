@@ -1,3 +1,6 @@
+// Module imports
+const Quiz = require('../models/Quiz');
+
 const { getPlatformQuiz } = require("../utils/quizUtils");
 
 exports.createQuiz = async (req, res) => {
