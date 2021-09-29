@@ -13,9 +13,7 @@ exports.createQuiz = async (req, res) => {
     })
       .lean(true)
       .exec();
-    if (existingQuiz.length>0) {
-      res.sendStatus(403);
-    } else {
+    if (!existingQuiz) {
       const newQuiz = await Quiz.create({
         title: req.body.title,
         description: req.body.description,
@@ -27,11 +25,12 @@ exports.createQuiz = async (req, res) => {
       });
       if (newQuiz) {
         return res.send(newQuiz);
-      } else {
-        res.status(403);
-        console.log("Quiz not succefully created");
       }
-    }
+
+    } else {
+      res.send("Quiz not succefully created");
+      }
+    
   } catch (error) {
     console.log(error);
     return res.sendStatus(500);
@@ -70,10 +69,11 @@ exports.getOneQuiz = async (req, res) => {
 exports.getAllQs = async (req, res) => {
   try {
     
-    let quiz = await Quiz.find({title: req.body.title}).exec();
+  let Qs = await Quiz.find({title:req.body.title},{questions:1}).exec();
 
-    if (quiz.length > 0) {
-      return res.send(quiz.questions);
+    if (Qs.length > 0) {
+      
+      return res.send(Qs);
     } else {
       return res.status(204);
     }
@@ -84,11 +84,11 @@ exports.getAllQs = async (req, res) => {
 };
 exports.getOneQ = async (req, res) => {
   try {
-    let quiz = await Quiz.findOne(req.body.title);
+    let Qs = await Quiz.find({title:req.body.title},{questions:1}).exec();
 
-    if (quiz.questions.length > 0) {
+    if (Qs.length > 0) {
       index = Math.floor(Math.random() * questions.length);
-      return res.send(quiz.questions[index]);
+      return res.send(Qs[index]);
     } else {
       return res.status(204);
     }
@@ -99,21 +99,29 @@ exports.getOneQ = async (req, res) => {
 };
 exports.updateQuiz = async (req, res) => {
   try {
-    let quiz = await Quiz.findOne(req.body.title);
-
-    if (!quiz) {
-      throw new Error("Quiz not found");
+    const existingQuiz = await Quiz.findOne({
+      title: req.body.title,
+    })
+      .lean(true)
+      .exec();
+    if (existingQuiz.length>0) {
+      res.sendStatus(403);
     } else {
-      quiz.updateOne(
-        {},
-        {
-          description: req.body.description,
-          questions: req.body.questions,
-          category_id: req.body.category_id,
-          games: req.body.games,
-        }
-      );
-      return res.send(quiz);
+      const newQuiz = await Quiz.create({
+        title: req.body.title,
+        description: req.body.description,
+        questions: req.body.questions,
+        category_id: req.body.category_id,
+        games: req.body.games,
+        is_published: req.body.is_published,
+        total_score: req.body.total_score,
+      });
+      if (newQuiz) {
+        return res.send(newQuiz);
+      } else {
+        res.status(403);
+        console.log("Quiz not succefully created");
+      }
     }
   } catch (error) {
     console.log(error);

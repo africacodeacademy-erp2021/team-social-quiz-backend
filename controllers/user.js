@@ -23,7 +23,7 @@ exports.getAllUsers = async (req, res) =>{
 }
 exports.getAllGames = async (req, res) => {
     try {
-      let player = await Quiz.findOne(req.body.email);
+      let player = await User.findOne(req.body.email);
   
       if (player.game_history.length > 0) {
         return res.send(player.game_history);
@@ -31,6 +31,7 @@ exports.getAllGames = async (req, res) => {
         return res.status(204);
       }
     } catch (error) {
+      console.log(error)
       return res.sendStatus(500);
     }
   };

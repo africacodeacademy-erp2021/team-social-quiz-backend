@@ -61,6 +61,9 @@ const quizController = require("./controllers/quiz");
  * TODO: Protect user routes
  */
 app.get("/users", userController.getAllUsers);
+app.get("/getAllGames", userController.getAllGames);
+
+//Quiz Routes
 app.get("/getAllQuiz",quizController.getAllQuiz);
 app.get("/getOneQuiz",quizController.getOneQuiz);
 app.get("/getAllQs",quizController.getAllQs);
