@@ -44,6 +44,7 @@ mongoose.connection.on("error", err => {
  */
  const userController = require("./controllers/user");
  const AllUsersRoute = require("./routes/AllUsers")
+ const ChangeRole = require("./routes/AllUsers")
 
 /**
  * User Routes
@@ -52,6 +53,7 @@ mongoose.connection.on("error", err => {
  */
  app.get("/users", userController.getAllUsers);
  app.get("/AllUsers", AllUsersRoute.getAllUsers);
+ app.put("/AllUsers", ChangeRole.ChangeUserRole)
 /**
  * Create Express server.
  */

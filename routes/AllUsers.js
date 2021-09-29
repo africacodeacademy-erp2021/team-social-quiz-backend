@@ -23,7 +23,7 @@ exports.getAllUsers = async()=>{
 exports.ChangeUserRole = async()=>{
 
     
-        router.get('/User', async (req, res) => {
+        router.put('/User/:_id', async (req, res) => {
             try {
                if(Role.PLAYER === player) {
                 const role = users.findByIdAndUpdate(_id, { $set: { role: Role.ADMIN } })
