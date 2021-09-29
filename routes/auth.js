@@ -1,25 +1,29 @@
 const express = require('express')
 const router = express.Router()
-const  {check, validationResult} = require('express-validator/check')
-const bycrypt = require('bcryptjs')
+const  {check, validationResult} = require('express-validator')
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-const myUser = require('../models/myUser')
+const User = require('../models/User')
+const auth = require('../middleware/auth')
 
-router.get(
+router.post(
         "/signup",
 
         [
             check("username", "Please Enter a Valid Username")
             .not()
             .isEmpty(),
-            check("email", "Please enter a valid email").isEmail(),
-            check("password", "Please enter a valid password").isLength({
-                min: 6
-            })
+            check("email", "Please enter a valid email").isEmail()
+            ,
+            check("password", "Password requires a min of 8 characters")
+            .isLength({
+                min: 8
+            }),
+            check("channel", "Specify the Authentication type").isEmpty()
         ],
    
-        async(req, res)=>{
+        async (req, res)=>{
 
             const errors = validationResult(req);
             if(!errors.isEmpty()){
@@ -29,37 +33,49 @@ router.get(
             }
 
             const {
-                username,email,password
+                username,
+                password,
+                email,
+                channel
             } = req.body;
 
             console.log(req.body.username)
 
             try{
-                // let myuser = await myUser.findOne({
-                //     email
-                // });
+                let user = await User.findOne({
+                    email
+                });
 
-                // if(myuser){
-                //     return res.status(400).json({
-                //         msg: "User Already Exists"
-                //     });
-                // }
+                if(user){
+                    return res.status(400).json({
+                        msg: "User Already Exists"
+                    });
+                }
 
-              let myuser = new myUser({
+              user = new User({
                     username,
-                    email, 
-                    password
+                    password,
+                    email,
+                    channel
                 });
 
                 console.log(req.body)
+                
+                bcrypt.hash(password, 10, (err, hash) =>{
+                    user.password = hash
+                    user.save();
+                    
+                });
 
-                await myuser.save();
+                console.log(user.password)
+                
 
                 const payload = {
-                    myuser: {
-                        id: myuser.id
+                    user: {
+                        id: user.id
                     }
                 };
+           
 
                 jwt.sign(payload, "SECRETLY",{
                     expiresIn: 10000
@@ -78,5 +94,16 @@ router.get(
             }
         }
     );
+
+
+    router.get("/me", auth, async (req, res) => {
+        try {
+          // request.user is getting fetched from Middleware after token authentication
+          const user = await User.findById(req.user.id);
+          res.json(user);
+        } catch (e) {
+          res.send({ message: "Error in Fetching user" });
+        }
+      });
 
 module.exports = router;

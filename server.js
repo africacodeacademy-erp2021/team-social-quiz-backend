@@ -5,7 +5,8 @@ const dburl = "mongodb://localhost:27017/aca_tsq"
 const InitiateMongoServer = async () =>{
     try{
         await mongoose.connect(dburl, {
-            useNewUrlParser: true
+            useNewUrlParser: true,
+            useUnifiedTopology: true 
         });
 
         console.log("Connected to DB")
