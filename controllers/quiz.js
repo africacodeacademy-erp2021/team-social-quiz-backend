@@ -69,10 +69,10 @@ exports.getOneQuiz = async (req, res) => {
 
 exports.getAllQs = async (req, res) => {
   try {
-    let quiz = await Quiz.find({}).exec()
-    //let quiz = await Quiz.findOne(req.body.title);
+    
+    let quiz = await Quiz.find({title: req.body.title}).exec();
 
-    if (quiz.questions.length > 0) {
+    if (quiz.length > 0) {
       return res.send(quiz.questions);
     } else {
       return res.status(204);
