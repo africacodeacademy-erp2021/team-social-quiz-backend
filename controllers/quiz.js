@@ -54,11 +54,11 @@ exports.getAllQuiz = async (req, res) => {
 
 exports.getOneQuiz = async (req, res) => {
   try {
-    let quiz = await Quiz.find({title: req.body.title}).exec()
-    if (quiz.length>0) {
-      return res.send(quiz);
+    let quiz = await Quiz.find({title: req.body.title}).lean(true).exec()
+    if (quiz.length===0) {
+       return res.send("Quiz not found"); 
     } else {
-    return res.send("Quiz not found");  
+    return res.send(quiz);
     }
   } catch (error) {
     console.log(error);
