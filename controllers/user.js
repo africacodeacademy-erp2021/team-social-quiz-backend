@@ -23,12 +23,14 @@ exports.getAllUsers = async (req, res) =>{
 }
 exports.getAllGames = async (req, res) => {
     try {
-      let player = await User.findOne(req.body.email);
+      let playerHistory = await User.find({email:req.body.email},
+      { game_history: 1 }
+    ).exec();;
   
-      if (player.game_history.length > 0) {
-        return res.send(player.game_history);
+      if (playerHistory === 0) {
+        return res.send("User doesn't exist");
       } else {
-        return res.status(204);
+       return res.send(playerHistory); 
       }
     } catch (error) {
       console.log(error)
