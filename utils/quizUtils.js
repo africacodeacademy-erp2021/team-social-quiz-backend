@@ -1,3 +1,4 @@
+const Quiz = require('../models/Quiz');
 /**
  * getPlatformQuiz
  * 
