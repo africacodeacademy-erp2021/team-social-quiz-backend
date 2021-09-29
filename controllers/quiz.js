@@ -13,7 +13,7 @@ exports.createQuiz = async (req, res) => {
     })
       .lean(true)
       .exec();
-    if (existingQuiz) {
+    if (existingQuiz.length>0) {
       res.sendStatus(403);
     } else {
       const newQuiz = await Quiz.create({
@@ -55,16 +55,14 @@ exports.getAllQuiz = async (req, res) => {
 
 exports.getOneQuiz = async (req, res) => {
   try {
-    let quiz = await Quiz.find({}).exec()
-    console.log(req.body)
-    if (!quiz) {
-      throw new Error("Quiz not found");
-    } else {
+    let quiz = await Quiz.find({title: req.body.title}).exec()
+    if (quiz.length>0) {
       return res.send(quiz);
+    } else {
+    return res.send("Quiz not found");  
     }
   } catch (error) {
     console.log(error);
-    
     return res.sendStatus(500);
   }
 };
