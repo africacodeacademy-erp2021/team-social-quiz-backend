@@ -1,10 +1,13 @@
+const bodyParser = require('body-parser');
+
 // Module imports
-const Quiz = require('../models/Quiz');
+const Quiz = require("../models/Quiz");
 
 const { getPlatformQuiz } = require("../utils/quizUtils");
 
 exports.createQuiz = async (req, res) => {
   try {
+   
     const existingQuiz = await Quiz.findOne({
       title: req.body.title,
     })
@@ -30,7 +33,8 @@ exports.createQuiz = async (req, res) => {
       }
     }
   } catch (error) {
-    return res.send("something is wrong");
+    console.log(error);
+    return res.sendStatus(500);
   }
 };
 
@@ -44,26 +48,31 @@ exports.getAllQuiz = async (req, res) => {
       return res.status(204).send(quizList);
     }
   } catch (error) {
+    console.log(error);
     return res.sendStatus(500);
   }
 };
 
 exports.getOneQuiz = async (req, res) => {
   try {
-    let quiz = await Quiz.findOne(req.body.title);
+    let quiz = await Quiz.find({}).exec()
+    console.log(req.body)
     if (!quiz) {
       throw new Error("Quiz not found");
     } else {
       return res.send(quiz);
     }
   } catch (error) {
+    console.log(error);
+    
     return res.sendStatus(500);
   }
 };
 
 exports.getAllQs = async (req, res) => {
   try {
-    let quiz = await Quiz.findOne(req.body.title);
+    let quiz = await Quiz.find({}).exec()
+    //let quiz = await Quiz.findOne(req.body.title);
 
     if (quiz.questions.length > 0) {
       return res.send(quiz.questions);
@@ -71,6 +80,7 @@ exports.getAllQs = async (req, res) => {
       return res.status(204);
     }
   } catch (error) {
+    console.log(error)
     return res.sendStatus(500);
   }
 };
@@ -85,6 +95,7 @@ exports.getOneQ = async (req, res) => {
       return res.status(204);
     }
   } catch (error) {
+    console.log(error)
     return res.sendStatus(500);
   }
 };
@@ -95,7 +106,8 @@ exports.updateQuiz = async (req, res) => {
     if (!quiz) {
       throw new Error("Quiz not found");
     } else {
-      quiz.updateOne({},
+      quiz.updateOne(
+        {},
         {
           description: req.body.description,
           questions: req.body.questions,
@@ -106,6 +118,7 @@ exports.updateQuiz = async (req, res) => {
       return res.send(quiz);
     }
   } catch (error) {
+    console.log(error);
     return res.sendStatus(500);
   }
 };
