@@ -6,7 +6,7 @@ const chalk = require("chalk");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const mongoSanitize = require("express-mongo-sanitize");
-
+const bodyParser = require('body-parser')
 /**
  * Create Express server.
  */
@@ -23,6 +23,13 @@ dotenv.config({
 
 //sanitize requests against special chars, some precaution against NoSQL Injection Attacks
 app.use(mongoSanitize());
+
+// parse application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(express.json())
+
 
 /**
  * Connect to MongoDB.
@@ -54,24 +61,12 @@ const quizController = require("./controllers/quiz");
  * TODO: Protect user routes
  */
 app.get("/users", userController.getAllUsers);
-app.get("/getAllQuiz", (req, res) => {
-  quizController.getAllQuiz;
-});
-app.get("/getOneQuiz", (req, res) => {
-  quizController.getOneQuiz;
-});
-app.get("/getAllQs", (req, res) => {
-  quizController.getAllQs;
-});
-app.get("/getOneQ", (req, res) => {
-  quizController.getOneQ;
-});
-app.post("/updateQuiz", (req, res) => {
-  quizController.updateQuiz;
-});
-app.post("/createQuiz", (req, res) => {
-  quizController.createQuiz;
-});
+app.get("/getAllQuiz",quizController.getAllQuiz);
+app.get("/getOneQuiz",quizController.getOneQuiz);
+app.get("/getAllQs",quizController.getAllQs);
+app.get("/getOneQ",quizController.getOneQ);
+app.post("/updateQuiz",quizController.updateQuiz);
+app.post("/createQuiz",quizController.createQuiz);
 
 /**
  * Express configuration.
