@@ -3,9 +3,9 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const QuestionInfoSchema = new mongoose.Schema(
   {
-    quiestion_Text: {
+    quiestion_text: {
       type: String,
-      unique: true,
+      
     },
     answers: {
       type: Array,
