@@ -6,7 +6,7 @@
  const dotenv = require("dotenv");
  const mongoose = require("mongoose");
  const mongoSanitize = require('express-mongo-sanitize');
-
+ 
 
  /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -15,8 +15,9 @@ dotenv.config({
     path: ".env"
   });
 
+  
 // TODO: Data Sanitization against XSS
-
+const app = express();
 //sanitize requests against special chars, some precaution against NoSQL Injection Attacks
 app.use(mongoSanitize())
 
@@ -42,18 +43,20 @@ mongoose.connection.on("error", err => {
  * Controllers.
  */
  const userController = require("./controllers/user");
-
+ const publishQuizController = require("./controllers/Publish_quiz");
 /**
  * User Routes
  * 
  * TODO: Protect user routes
  */
  app.get("/users", userController.getAllUsers);
+ app.put("/Publish_quiz", publishQuizController.QuizPublish )
+ 
 
 /**
  * Create Express server.
  */
-const app = express();
+//const app = express();
 
 /**
  * Express configuration.
