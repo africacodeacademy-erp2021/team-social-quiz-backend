@@ -18,7 +18,8 @@ const userSchema = new mongoose.Schema(
     },
 
     game_history:{
-      type: Boolean, 
+      type: Number,
+      default: 0, 
     },
 
     channel:{
