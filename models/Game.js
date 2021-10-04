@@ -18,7 +18,7 @@ const GameSchema = new mongoose.Schema(
 
     winner: {
       type: ObjectId,
-      ref: "users",
+      ref: "User",
     },
 
     winning_score: {
