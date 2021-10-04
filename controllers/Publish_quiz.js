@@ -12,7 +12,7 @@ exports.QuizPublish = async () => {
   router.put("/Quiz/:_id", async (req, res) => {
     try {
       if (is_published === false) {
-        const { title,description,questions,category_id,games,is_published,popularity,total_score } = req.body;
+        const { title,description,questions,category_id,games,popularity,total_score } = req.body;
         const QuizToPublish = await quizzes
           .findByIdAndUpdate(_id, { $set: { is_published: true } })
           .exec();
