@@ -5,11 +5,17 @@ const { Role } = require("../utils/Constants");
 
 const userSchema = new mongoose.Schema(
   {
+    username: {
+      type: String,
+      unique: true 
+    },
     email: {
       type: String,
       unique: true
     },
-
+    channel: {
+      type:String
+    },
     refreshToken: { type:String },
     accessToken: {  type:String },
     role: {

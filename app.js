@@ -14,6 +14,7 @@
 dotenv.config({
     path: ".env"
   });
+  const app = express();
 
 // TODO: Data Sanitization against XSS
 
@@ -43,6 +44,7 @@ mongoose.connection.on("error", err => {
  * Controllers.
  */
  const userController = require("./controllers/user");
+ const googleAuth = require("./controllers/GoogleAuthentication");
 
 /**
  * User Routes
@@ -50,11 +52,12 @@ mongoose.connection.on("error", err => {
  * TODO: Protect user routes
  */
  app.get("/users", userController.getAllUsers);
+ app.get("/googleAuth", googleAuth.getGoogleUsers);
 
 /**
  * Create Express server.
  */
-const app = express();
+
 
 /**
  * Express configuration.
