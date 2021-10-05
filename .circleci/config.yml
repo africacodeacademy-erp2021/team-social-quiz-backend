@@ -7,7 +7,7 @@ orbs:
 
 jobs:
 
-  build:
+  start:
 
     docker:
       - image: cimg/node:15.1
@@ -15,8 +15,8 @@ jobs:
       - checkout
       - node/install-packages
       - run:
-          name: Build app
-          command: npm run build  
+          name: start
+          command: npm start  
 
   test:
     docker:
@@ -30,28 +30,15 @@ jobs:
           name: Run tests
           command: npm test
 
-  install-packages:
-    docker:
-      - image: cimg/node:15.1
-
-    steps:
-     
-      - node/install-packages
-
-      - run:
-          name: Install dependencies
-          command: npm install --save
   
 workflows:
 
   build-test-and-deploy:
    jobs:
     - test 
-    - build:
+    - start:
         requires:
          - test
-    - install-packages
-
 #express
 #chalk
 #dotenv
