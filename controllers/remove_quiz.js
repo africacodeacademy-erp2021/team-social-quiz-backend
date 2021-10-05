@@ -13,7 +13,7 @@ const router = express.Router();
       try {
         
         if (is_published === true) {
-          const deleteQuestion = await quizzes
+          const deleteQuestion = await Quiz
             .findOneAndRemove({ _id })
             .exec()
             .then((Quiz) => res.send(`${Quiz.title}removed from public view`));
