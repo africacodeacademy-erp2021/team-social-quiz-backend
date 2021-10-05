@@ -13,7 +13,11 @@ jobs:
       - image: cimg/node:15.1
     steps:
       - checkout
-      - node/install-packages
+      - node/install-packages:
+          app-dir: ~/project/backend
+          cache-version: v1
+          cache-path: node_modules
+
       - run:
           name: Build app
           command: npm run build  
