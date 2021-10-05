@@ -8,17 +8,12 @@ orbs:
 jobs:
 
   build:
-    working_directory: ~/project/backend
 
     docker:
       - image: cimg/node:15.1
     steps:
       - checkout
-      - node/install-packages:
-          app-dir: ~/project/backend
-          cache-version: v1
-          cache-path: node_modules
-
+      - node/install-packages
       - run:
           name: Build app
           command: npm run build  
@@ -29,10 +24,7 @@ jobs:
 
     steps:
      
-      - node/install-packages:
-          app-dir: ~/project/backend
-          cache-version: v1
-          cache-path: node_modules
+      - node/install-packages
 
       - run:
           name: Run tests
@@ -44,10 +36,7 @@ jobs:
 
     steps:
      
-      - node/install-packages:
-          app-dir: ~/project/backend
-          cache-version: v1
-          cache-path: node_modules
+      - node/install-packages
 
       - run:
           name: Install dependencies
