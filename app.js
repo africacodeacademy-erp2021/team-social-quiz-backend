@@ -43,6 +43,7 @@ mongoose.connection.on("error", err => {
  * Controllers.
  */
  const userController = require("./controllers/user");
+ const QuizController = require("./controllers/Quiz");
 
 /**
  * User Routes
@@ -50,6 +51,7 @@ mongoose.connection.on("error", err => {
  * TODO: Protect user routes
  */
  app.get("/users", userController.getAllUsers);
+ app.get("/quizzes", QuizController.PopularQuizzes);
 
 /**
  * Create Express server.
