@@ -25,16 +25,18 @@
     "connect-mongo": "^3.0.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
-    "dotenv": "^8.0.0",
+    "dotenv": "^8.6.0",
     "errorhandler": "^1.5.1",
     "express": "^4.17.1",
-    "express-mongo-sanitize": "^2.0.1",
+    "express-mongo-sanitize": "^2.1.0",
     "express-session": "^1.16.2",
     "mongodb": "^4.1.1",
-    "mongoose": "^5.12.12",
+    "mongoose": "^5.13.10",
     "morgan": "^1.9.1",
     "node-cron": "^3.0.0",
-    "nodemon": "^2.0.4",
     "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
   }
 }
