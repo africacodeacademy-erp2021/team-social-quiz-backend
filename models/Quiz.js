@@ -11,7 +11,7 @@ const QuizSchema = new mongoose.Schema(
       type: String,
     },
 
-    questions: {
+    question_id: {
       type: Array,
     },
 
