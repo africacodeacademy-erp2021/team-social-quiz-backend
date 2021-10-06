@@ -30,6 +30,9 @@ const userSchema = new mongoose.Schema(
         lastname: {
           type: String,
           trim: true
+        },
+        facebook: {
+          type: String
         }
       },
       gender: String,
