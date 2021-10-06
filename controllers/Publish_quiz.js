@@ -1,6 +1,4 @@
 const { Quiz } = require("../models/Quiz");
-const mongoose = require("mongoose");
-mongoose.connect(process.env.DATABASE_URI);
 const express = require("express");
 const router = express.Router();
 
@@ -8,22 +6,25 @@ const router = express.Router();
  * find Quiz by id, set its published status to true and return the updated quiz.
  */
 
-exports.QuizPublish = async () => {
-  router.put("/Quiz/:_id", async (req, res) => {
+exports.QuizPublish = async (req, res) => {
+  
     try {
-      if (is_published === false) {
-        const { title,description,questions,category_id,games,popularity,total_score } = req.body;
-        const QuizToPublish = await quizzes
-          .findByIdAndUpdate(_id, { $set: { is_published: true } })
-          .exec();
+      let is_published = false;
+      if (is_published) {
+        const QuizToPublish = await Quiz.findByIdAndUpdate(
+          _id,
+          { $set: { is_published: true } },
 
-        QuizToPublish.title = title;
-        QuizToPublish.description = description;
-        QuizToPublish.questions = questions;
-        QuizToPublish.category_id = category_id;
-        QuizToPublish.games = games;
-        QuizToPublish.popularity = popularity;
-        QuizToPublish.total_score = total_score;
+          {
+            title: req.body.title,
+            description: req.body.description,
+            question_id: req.body.question_id,
+            category_id: req.body.category_id,
+            games: req.body.games,
+            is_published: req.body.is_published,
+            total_score: req.body.total_score,
+          }
+        ).exec();
 
         await QuizToPublish.save();
 
@@ -35,5 +36,5 @@ exports.QuizPublish = async () => {
       console.log(error);
       return res.status(500).json({ error: error });
     }
-  });
+  
 };
