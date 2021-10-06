@@ -1,6 +1,6 @@
 const { getPopularQuizzes } = require("../utils/QuizUtils")
 
-exports.PopularQuizzes = async () => {
+exports.PopularQuizzes = async (req, res) => {
 
     try {
       let popularquiz = await getPopularQuizzes();
