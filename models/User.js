@@ -17,6 +17,22 @@ const userSchema = new mongoose.Schema(
       default: Role.PLAYER
     },
 
+    username: {
+      type: String,
+      required: true
+  },
+
+  password:{
+      type: String,
+      required: true
+  },
+
+  channel:{
+      type: String,
+      required: false,
+  },
+
+
     status: {
       type: Boolean,
       default: true,
@@ -45,6 +61,5 @@ const userSchema = new mongoose.Schema(
 
 
 
-const User = mongoose.model("User", userSchema);
 
-module.exports = User;
+module.exports = mongoose.model("User", userSchema);
