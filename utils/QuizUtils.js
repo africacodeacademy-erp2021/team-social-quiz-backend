@@ -10,11 +10,12 @@ const Quiz = require('../models/Quiz');
  */
 exports.getPopularQuizzes = async () =>{
   try{
-    let popularity = 0;  
-    let percentage  = (50 / 100 ) * popularity 
-    let popularquizzes = await Quiz.find({ $where: popularity > percentage}).exec()
+    let QuizPopularity = 0;  
+    let popularityPercentage  = (50 / 100 ) * QuizPopularity 
+    let popularquizzes = await Quiz.find({ popularity: popularity > popularityPercentage}).exec()
     return Promise.resolve(popularquizzes)
   }catch(error){
+    console.log(error);
     return Promise.reject(error)
   }
   
