@@ -8,8 +8,9 @@ const { getPlatformQuiz } = require("../utils/quizUtils");
 exports.updateQuiz = async (req, res) => {
   try {
     const quiz = await Quiz.findOneAndUpdate(
-      { title: req.body.title},
-      {description: req.body.description,
+      { _id: req.body._id},
+      {title: req.body.title,
+      description: req.body.description,
       questions: req.body.questions,
       category_id: req.body.category_id,
       games: req.body.games,
