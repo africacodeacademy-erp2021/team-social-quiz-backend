@@ -1,7 +1,3 @@
-// Module imports
-
-const User = require('../models/User');
-
 /**
  * getPlatformUsers
  * 
