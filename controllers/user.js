@@ -23,7 +23,7 @@ exports.getAllUsers = async (req, res) =>{
 }
 exports.getAllGames = async (req, res) => {
     try {
-      let playerHistory = await User.find({email:req.body.email},
+      let playerHistory = await User.find({_id: req.body._id},
       { game_history: 1 }
     ).exec();;
   
