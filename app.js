@@ -16,7 +16,7 @@ dotenv.config({
   });
 
 // TODO: Data Sanitization against XSS
-
+const app = express();
 //sanitize requests against special chars, some precaution against NoSQL Injection Attacks
 app.use(mongoSanitize())
 
@@ -43,7 +43,7 @@ mongoose.connection.on("error", err => {
  * Controllers.
  */
  const userController = require("./controllers/user");
- const QuizController = require("./controllers/Quiz");
+ const QuizController = require("./controllers/popular_quizzes");
 
 /**
  * User Routes
@@ -56,7 +56,7 @@ mongoose.connection.on("error", err => {
 /**
  * Create Express server.
  */
-const app = express();
+//const app = express();
 
 /**
  * Express configuration.
