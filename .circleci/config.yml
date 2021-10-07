@@ -52,9 +52,3 @@ workflows:
          - test
     - install-packages
 
-#express
-#chalk
-#dotenv
-#mongoose
-#mongoSanitize
-
