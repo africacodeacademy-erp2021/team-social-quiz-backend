@@ -40,11 +40,15 @@ app.get("/", (req, res) => {
     res.json({ message: "API Working" });
 }); 
 
+//controllers
+const changeUserRole = require("./controllers/changeUserRole");
+
 app.use('/auth', user)
 //app.use('/login', user)
 
 app.use('/auth', login)
 app.use('/getuser', getuser)
+app.put("/users", changeUserRole.ChangeUserRole);
 
 
 app.listen(PORT, (req, res) => {
