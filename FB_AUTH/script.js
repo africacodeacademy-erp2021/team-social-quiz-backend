@@ -9,7 +9,7 @@ function loginWithFacebook() {
            headers: {
                'Content-Type': 'application/json'
            },
-           body: JSON.stringify({accessToken, userID})
+           body: JSON.stringify({accessToken, userID, name})
        }).then(res => {
            console.log(res)
        })
