@@ -59,8 +59,9 @@ const app = express();
 /**
  * Express configuration.
  */
-app.set("host", "127.0.0.1");
-app.set("port", process.env.PORT);
+//app.set("host", "127.0.0.1");
+//app.set("port", process.env.PORT);
+app.set('port', (process.env.PORT || 5000));
 
 
 app.listen(app.get("port"), () => {
