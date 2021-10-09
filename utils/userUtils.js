@@ -1,3 +1,4 @@
+const User = require('../models/User')
 /**
  * getPlatformUsers
  * 
@@ -12,4 +13,13 @@ exports.getPlatformUsers = async () =>{
     return Promise.reject(error)
   }
   
+}
+
+exports.registerSocialUsers = async () => {
+  try {
+    let users = await User.insertOne({}).exec()
+    return Promise.resolve(users)
+  } catch (error) {
+    return Promise.reject(error);
+  }
 }
