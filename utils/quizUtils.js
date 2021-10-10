@@ -106,6 +106,31 @@ exports.publishQuiz = async (quizId) => {
 }
 
 /**
+ * unpublishQuiz
+ * 
+ * Remove a quiz from public view
+ * 
+ * @param {*} quizId 
+ * @returns  quiz object
+ */
+ exports.unpublishQuiz = async (quizId) => {
+  try{
+    let quiz = await Quiz.findOneAndUpdate(
+                          {_id: new ObjectId(quizId)},
+                          {isPublished:false},
+                          {new:true}
+                          )
+                          .populate({path:"category", model:"Category", select:"text"})
+                          .exec()
+
+    return Promise.resolve(quiz)
+  }catch(error){
+    return Promise.reject(error)
+  }
+}
+
+
+/**
  * getQuizById
  * 
  * fetch a single quiz object given a quizId

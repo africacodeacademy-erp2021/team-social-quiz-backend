@@ -85,12 +85,25 @@ exports.publishQuiz = async (req, res) =>{
   }
 }
 
+exports.unpublishQuiz = async (req, res) =>{
+  try{
+    const {
+      quizId
+    } = req.body
+    let quiz = await quizUtils.unpublishQuiz(quizId)
+    return res.send(quiz)
+  }catch(error){
+    console.log(error)
+    return res.status(500).send(error)
+  }
+}
+
 exports.quizById = async (req, res) =>{
   try{
     const {
       quizId
     } = req.query
-    
+
     let quiz = await quizUtils.getQuizById(quizId)
     return res.send(quiz)
   }catch(error){
