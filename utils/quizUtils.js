@@ -216,3 +216,27 @@ exports.publishQuiz = async (quizId) => {
     return Promise.reject(error)
   }
 }
+
+/**
+ * updateQuizPopularity
+ * 
+ * @param {string} quizId
+ * @returns quiz object
+ */
+ exports.updateQuizPopularity = async (quizId) => {
+  try{
+    let quiz = await Quiz.findOne({_id:ObjectId(quizId)}).exec()
+
+    if(quiz == null)
+      return Promise.reject("quiz not found")
+      
+    quiz['popularity'] = quiz['popularity']+1
+    quiz = await quiz.save()
+
+    return Promise.resolve(quiz)
+    
+    
+  }catch(error){
+    return Promise.reject(error)
+  }
+}

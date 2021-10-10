@@ -227,6 +227,8 @@ exports.selectNextQuestion = (questions) =>{
       }
     }).execPopulate()
 
+    quizUtils.updateQuizPopularity(game.quiz._id)
+
     return Promise.resolve(game)
   }catch(error){
     return Promise.reject(error)
