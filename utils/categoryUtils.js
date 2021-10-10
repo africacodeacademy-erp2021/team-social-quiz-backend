@@ -17,7 +17,6 @@ const Category = require('../models/Category');
                                   text:text,
                                 }).save()
 
-    console.log(newCategory);
     return Promise.resolve(newCategory)
 
   }catch(error){
