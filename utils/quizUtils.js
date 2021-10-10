@@ -86,7 +86,7 @@ exports.getPublishedQuizList = async () =>{
  * publishQuiz
  * 
  * publish quiz with given quizId
- * @param {*} quizId 
+ * @param {String} quizId 
  * @returns published quiz object
  */
 exports.publishQuiz = async (quizId) => {
@@ -110,7 +110,7 @@ exports.publishQuiz = async (quizId) => {
  * 
  * Remove a quiz from public view
  * 
- * @param {*} quizId 
+ * @param {String} quizId 
  * @returns  quiz object
  */
  exports.unpublishQuiz = async (quizId) => {
@@ -134,7 +134,7 @@ exports.publishQuiz = async (quizId) => {
  * getQuizById
  * 
  * fetch a single quiz object given a quizId
- * @param {*} quizId 
+ * @param {String} quizId 
  * @returns quiz object
  */
  exports.getQuizById = async (quizId) => {

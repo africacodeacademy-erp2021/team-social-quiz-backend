@@ -30,7 +30,7 @@ const Category = require('../models/Category');
 /**
  * getCategoryById
  * 
- * @param {*} categoryId 
+ * @param {String} categoryId 
  * @returns catrgory object with given category id
  */
 exports.getCategoryById = async (categoryId) =>{
