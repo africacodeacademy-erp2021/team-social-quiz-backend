@@ -1,17 +1,19 @@
-const { getPlatformPlayers } = require("../utils/gameUtils");
+const { getPlatformUsers } = require("../utils/userUtils")
 
-exports.getAllPlayers = async () => {
-  try {
-  
-    const playersList = await getPlatformPlayers();
+exports.getAllPlayers = async (req, res) =>{
+    try{
 
-    if (usersList.length > 0) {
-      return res.send(playersList);
-    } else {
-      return res.status(204).send(playersList);
+        let playersList = await getPlatformUsers()
+        
+        if(playersList.length > 0 ){
+             return res.send(playersList)
+        }else{
+            return res.status(204).send(playersList)
+        }
+        
+
+    }catch(error){
+        return res.sendStatus(500)
     }
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ error: error });
-  }
-};
+    
+}
