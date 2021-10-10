@@ -3,7 +3,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const QuestionInfoSchema = new mongoose.Schema(
   {
-    quiestion_text: {
+    text: {
       type: String,
       
     },

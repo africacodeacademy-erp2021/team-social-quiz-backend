@@ -3,7 +3,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const Answers_Schema = new mongoose.Schema(
   {
-    is_correct: {
+    isCorrect: {
       type: Boolean,
       default: false,
     },
@@ -13,7 +13,7 @@ const Answers_Schema = new mongoose.Schema(
       unique: false,
     },
 
-    question_id: {
+    question: {
       type: ObjectId,
       ref: "Question",
     },

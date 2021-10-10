@@ -11,11 +11,11 @@ const QuizSchema = new mongoose.Schema(
       type: String,
     },
 
-    question_id: {
+    questions: {
       type: Array,
     },
 
-    category_id: {
+    category: {
       type: ObjectId,
       ref: "Category",
     },
@@ -24,7 +24,7 @@ const QuizSchema = new mongoose.Schema(
       type: Array,
     },
 
-    is_published: {
+    isPublished: {
       type: Boolean,
       default: false,
     },
@@ -34,7 +34,7 @@ const QuizSchema = new mongoose.Schema(
       default: 0,
     },
 
-    total_score: {
+    totalScore: {
       type: Number,
       default: 0,
     },

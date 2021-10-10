@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema(
   {
     email: {
       type: String,
+      trim: true,
       unique: true,
     },
 
@@ -17,9 +18,8 @@ const userSchema = new mongoose.Schema(
       default: Role.PLAYER,
     },
 
-    game_history:{
-      type: Number,
-      default: 0, 
+    gameHistory:{
+      type: Array
     },
 
     channel:{
@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema(
       
     },
 
-    platform_points:{
+    platformPoints:{
       type: Number,
       default: 0,
     },
@@ -35,19 +35,12 @@ const userSchema = new mongoose.Schema(
     username: {
       type: String,
       required: true
-  },
+    },
 
-  password:{
-      type: String,
-      required: true
-  },
-
-  channel:{
-      type: String,
-      required: false,
-  },
-
-
+    password:{
+        type: String,
+        required: true
+    },
     status: {
       type: Boolean,
       default: true,
@@ -55,7 +48,7 @@ const userSchema = new mongoose.Schema(
     profile: {
 
       name: {
-        screen_name: {
+        screenName: {
           type: String,
           trim: true,
         },

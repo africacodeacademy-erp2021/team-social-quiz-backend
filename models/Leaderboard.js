@@ -4,12 +4,12 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 const LeaderboardSchema = new mongoose.Schema(
   {
 
-    user_id:{
+    user:{
       type:ObjectId,
-      ref: "users",
+      ref: "User",
     },
     
-    winning_score:{
+    score:{
         type: ObjectId,
         ref: "Game",
     },

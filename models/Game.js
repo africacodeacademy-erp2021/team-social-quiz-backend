@@ -3,7 +3,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const GameSchema = new mongoose.Schema(
   {
-    quiz_id: {
+    quiz: {
       type: ObjectId,
       ref: "Quiz",
     },
@@ -12,7 +12,7 @@ const GameSchema = new mongoose.Schema(
       type: Array,
     },
 
-    player_answers: {
+    playerAnswers: {
       type: Array,
     },
 
@@ -21,12 +21,12 @@ const GameSchema = new mongoose.Schema(
       ref: "User",
     },
 
-    winning_score: {
+    winningScore: {
       type: Number,
       default: 0,
     },
 
-    winning_team: {
+    winningTeam: {
       type: Object,
     },
 
@@ -39,11 +39,11 @@ const GameSchema = new mongoose.Schema(
       type: Array,
     },
 
-    start_time: {
+    startTime: {
       type: Date,
     },
 
-    end_time: {
+    endTime: {
       type: Date,
     },
   },
