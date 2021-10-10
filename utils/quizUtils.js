@@ -7,7 +7,7 @@ const Quiz = require('../models/Quiz');
  * returns all platform Quizes
  * @returns Resolved promise with Platform Quizes
  */
-exports.getAllQuizes = async () =>{
+exports.getAllQuizzes = async () =>{
   try{
     let quiz = await Quiz.find({})
                           .populate({path:"category", model:"Category", select:"text"})
@@ -82,6 +82,13 @@ exports.getPublishedQuizList = async () =>{
   }
 }
 
+/**
+ * publishQuiz
+ * 
+ * publish quiz with given quizId
+ * @param {*} quizId 
+ * @returns published quiz object
+ */
 exports.publishQuiz = async (quizId) => {
   try{
     let quiz = await Quiz.findOneAndUpdate(
@@ -91,7 +98,7 @@ exports.publishQuiz = async (quizId) => {
                           )
                           .populate({path:"category", model:"Category", select:"text"})
                           .exec()
-                          
+
     return Promise.resolve(quiz)
   }catch(error){
     return Promise.reject(error)
