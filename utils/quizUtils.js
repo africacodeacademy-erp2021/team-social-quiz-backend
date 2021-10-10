@@ -81,3 +81,19 @@ exports.getPublishedQuizList = async () =>{
     return Promise.reject(error)
   }
 }
+
+exports.publishQuiz = async (quizId) => {
+  try{
+    let quiz = await Quiz.findOneAndUpdate(
+                          {_id: new ObjectId(quizId)},
+                          {isPublished:true},
+                          {new:true}
+                          )
+                          .populate({path:"category", model:"Category", select:"text"})
+                          .exec()
+                          
+    return Promise.resolve(quiz)
+  }catch(error){
+    return Promise.reject(error)
+  }
+}
