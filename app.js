@@ -83,6 +83,8 @@ app.get(`${BASE_URL}/players`, userController.getPlayers)
 app.get(`${BASE_URL}/admins`, userController.getAdmins)
 app.get(`${BASE_URL}/player`, userController.getPlayer)
 app.put(`${BASE_URL}/player/admin`, userController.elevateToAdmin)
+app.put(`${BASE_URL}/player/suspend`, userController.suspendPlayer)
+app.put(`${BASE_URL}/player/revive`, userController.revivePlayer)
 
 http.createServer(app).listen(process.env.PORT, () => {
     console.log(

@@ -83,7 +83,7 @@ try{
  * @param {String} role
  * @returns Resolved promise with user info
  */
- exports.updatePlayerRole = async (userId, role) =>{
+exports.updatePlayerRole = async (userId, role) =>{
   try{
     //TODO: Update user access scopes
     let user = await User.findOneAndUpdate(
@@ -91,7 +91,7 @@ try{
       {role:role}, 
       {new : true}
     ).exec()
-  
+
     if(user != null)
       return Promise.resolve(user)
     else
@@ -99,5 +99,59 @@ try{
   }catch(error){
     return Promise.reject(error)
   }
-  
+
+}
+
+/**
+ * suspendPlayer
+ * 
+ * suspends a player with given userId
+ * 
+ * @param {String} userId
+ * @returns Resolved promise with user info
+ */
+exports.suspendPlayer = async (userId) =>{
+  try{
+    //TODO: Update user access scopes
+    let user = await User.findOneAndUpdate(
+      {_id:new ObjectId(userId)},
+      {status:false}, 
+      {new : true}
+    ).exec()
+
+    if(user != null)
+      return Promise.resolve(user)
+    else
+      return Promise.reject("user doesnt exist")
+  }catch(error){
+    return Promise.reject(error)
   }
+
+}
+
+/**
+ * revivePlayer
+ * 
+ * suspends a player with given userId
+ * 
+ * @param {String} userId
+ * @returns Resolved promise with user info
+ */
+ exports.revivePlayer = async (userId) =>{
+  try{
+    //TODO: Update user access scopes
+    let user = await User.findOneAndUpdate(
+      {_id:new ObjectId(userId)},
+      {status:true}, 
+      {new : true}
+    ).exec()
+
+    if(user != null)
+      return Promise.resolve(user)
+    else
+      return Promise.reject("user doesnt exist")
+  }catch(error){
+    return Promise.reject(error)
+  }
+
+}

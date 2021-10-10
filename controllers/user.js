@@ -101,3 +101,29 @@ exports.elevateToAdmin = async (req, res) => {
     return res.status(500).send("failed to elevate user role");
   }
 };
+
+exports.suspendPlayer = async (req, res) => {
+  try {
+    const {userId} = req.body
+
+    let user = await userUtils.suspendPlayer(userId)
+    return res.send(user);
+
+  } catch (error) {
+    console.log(error)
+    return res.status(500).send("failed to elevate user role");
+  }
+};
+
+exports.revivePlayer = async (req, res) => {
+  try {
+    const {userId} = req.body
+
+    let user = await userUtils.revivePlayer(userId)
+    return res.send(user);
+
+  } catch (error) {
+    console.log(error)
+    return res.status(500).send("failed to elevate user role");
+  }
+};
