@@ -42,21 +42,18 @@ mongoose.connection.on("error", err => {
 /**
  * Controllers.
  */
- const userController = require("./controllers/user");
- const AllUsersRoute = require("./routes/AllUsers")
- const ChangeRole = require("./routes/AllUsers")
- const UserDetails = require("./routes/AllUsers")
-
+ //const userController = require("./controllers/user");
+ const AllPlayers = require("./controllers/AllPlayers");
+ 
 
 /**
  * User Routes
  * 
  * TODO: Protect user routes
  */
- app.get("/users", userController.getAllUsers);
- app.get("/AllUsers", AllUsersRoute.getAllUsers);
- app.put("/AllUsers", ChangeRole.ChangeUserRole)
- app.get("/AllUsers", UserDetails.GetUserDetails)
+ //app.get("/users", userController.getAllUsers);
+ app.get("/users", AllPlayers.getAllPlayers);
+ 
 
 /**
  * Create Express server.
