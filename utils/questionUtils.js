@@ -1,6 +1,7 @@
 const { ObjectId } = require('mongodb');
 const Answers = require('../models/Answers');
 const Question = require('../models/Question');
+const Quiz = require('../models/Quiz');
 
 
 
@@ -30,7 +31,7 @@ const Question = require('../models/Question');
     newQuestion["answers"] = newAnswers.map(answer => {return new ObjectId(answer._id)}) 
     
     newQuestion = await newQuestion.save()
-    
+
     return newQuestion
   }catch(error){
     return Promise.reject(error)
@@ -46,6 +47,25 @@ exports.createAnswer = async (text, questionId, isCorrect) =>{
     }).save()
 
     return answer
+}
+
+/**
+ * getQuizQuestions
+ * 
+ * @param {String} quizId 
+ * @returns list of question Objects
+ */
+exports.getQuizQuestions = async (quizId) =>{
+  let quiz = await Quiz.findOne({_id: new ObjectId(quizId)})
+                 .populate({path:"questions", model:"Question", populate:{path:"answers", model:"Answers"}})
+                 .exec()
+  if(quiz != null){
+    let questions = quiz.questions
+    return Promise.resolve(questions)
+  }
+  else{
+    return Promise.reject(`quiz with ID ${quizId} not found`)
+  }
 }
 
 

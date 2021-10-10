@@ -51,7 +51,7 @@ app.use('/getuser', getuser)
 
 const categoryController = require("./controllers/category")
 const quizController = require("./controllers/quiz")
-
+const questionController = require("./controllers/questions")
 // Category endpoints
 app.post(`${BASE_URL}/category`, categoryController.createCategory)
 app.get(`${BASE_URL}/category`, categoryController.getCategory)
@@ -63,7 +63,10 @@ app.get(`${BASE_URL}/quizzes`, quizController.getAllQuiz)
 app.get(`${BASE_URL}/quizzes/published`, quizController.getPublishedQuizes)
 app.post(`${BASE_URL}/quiz/publish`, quizController.publishQuiz)
 app.post(`${BASE_URL}/quiz/publish/remove`, quizController.unpublishQuiz)
-app.post(`${BASE_URL}/quiz`, quizController.quizById)
+app.get(`${BASE_URL}/quiz`, quizController.quizById)
+
+// Questions endpoints
+app.get(`${BASE_URL}/questions/quiz`, questionController.getQuizQuestions)
 
 http.createServer(app).listen(process.env.PORT, () => {
     console.log(
