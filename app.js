@@ -54,6 +54,7 @@ const quizController = require("./controllers/quiz")
 const questionController = require("./controllers/questions")
 const authController = require("./controllers/authentication")
 const userController = require("./controllers/user")
+const gameController = require("./controllers/game")
 
 // Auth endpoints
 app.post(`${BASE_URL}/register`, authController.register)
@@ -85,6 +86,12 @@ app.get(`${BASE_URL}/player`, userController.getPlayer)
 app.put(`${BASE_URL}/player/admin`, userController.elevateToAdmin)
 app.put(`${BASE_URL}/player/suspend`, userController.suspendPlayer)
 app.put(`${BASE_URL}/player/revive`, userController.revivePlayer)
+
+// Game endpoints
+app.post(`${BASE_URL}/game/singleplayer`, gameController.initializeSinglePlayerGame)
+app.post(`${BASE_URL}/game/multiplayer`, gameController.initializeMultiplayerGame)
+app.post(`${BASE_URL}/game/teams`, gameController.initializeTeamGame)
+app.put(`${BASE_URL}/game/singleplayer/start`, gameController.startSinglePlayerGame)
 
 http.createServer(app).listen(process.env.PORT, () => {
     console.log(

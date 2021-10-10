@@ -15,6 +15,10 @@ const GameSchema = new mongoose.Schema(
     playerAnswers: {
       type: Array,
     },
+    host:{
+      type:ObjectId,
+      ref:"User",
+    },
 
     winner: {
       type: ObjectId,
@@ -35,6 +39,10 @@ const GameSchema = new mongoose.Schema(
       ref: "Leaderboard",
     },
 
+    gameType:{
+      type:String
+    },
+
     teams: {
       type: Array,
     },
@@ -46,6 +54,16 @@ const GameSchema = new mongoose.Schema(
     endTime: {
       type: Date,
     },
+    pin:{
+      type:Number
+    },
+    remainingQuestions:{
+      type:Array
+    },
+    currentQuestion:{
+      type:ObjectId,
+      ref:"Question"
+    }
   },
   {
     timestamps: true,
