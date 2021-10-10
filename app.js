@@ -52,6 +52,13 @@ app.use('/getuser', getuser)
 const categoryController = require("./controllers/category")
 const quizController = require("./controllers/quiz")
 const questionController = require("./controllers/questions")
+const authController = require("./controllers/authentication")
+const userController = require("./controllers/user")
+
+// Auth endpoints
+app.post(`${BASE_URL}/register`, authController.register)
+app.post(`${BASE_URL}/acoount`, authController.register)
+
 // Category endpoints
 app.post(`${BASE_URL}/category`, categoryController.createCategory)
 app.get(`${BASE_URL}/category`, categoryController.getCategory)
@@ -69,6 +76,12 @@ app.get(`${BASE_URL}/quiz/popular`, quizController.getPopularQuiz)
 
 // Questions endpoints
 app.get(`${BASE_URL}/questions/quiz`, questionController.getQuizQuestions)
+
+// User endpoints
+app.get(`${BASE_URL}/users`, userController.getAllUsers)
+app.get(`${BASE_URL}/players`, userController.getPlayers)
+app.get(`${BASE_URL}/admins`, userController.getAdmins)
+app.get(`${BASE_URL}/player`, userController.getPlayer)
 
 http.createServer(app).listen(process.env.PORT, () => {
     console.log(

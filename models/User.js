@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: Role.PLAYER,
     },
-
+    accessScopes:{type:Array},
     gameHistory:{
       type: Array
     },
@@ -32,21 +32,16 @@ const userSchema = new mongoose.Schema(
       default: 0,
     },
 
-    username: {
-      type: String,
-      required: true
-    },
-
     password:{
         type: String,
-        required: true
     },
+
     status: {
       type: Boolean,
       default: true,
     },
-    profile: {
 
+    profile: {
       name: {
         screenName: {
           type: String,
