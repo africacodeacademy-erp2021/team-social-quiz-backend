@@ -148,3 +148,27 @@ exports.publishQuiz = async (quizId) => {
     return Promise.reject(error)
   }
 }
+
+/**
+ * updateQuiz
+ * 
+ * used to update root level elements / attributes of a quiz
+ * @param {String} quizId 
+ * @param {Json object} newData
+ * @returns updated quiz object
+ */
+ exports.updateQuiz = async (quizId, newData) => {
+  try{
+    let updatedQiz = await Quiz.findOneAndUpdate(
+                            {_id: new ObjectId(quizId)},
+                            newData,
+                            {new:true}
+                            )
+                          .populate({path:"category", model:"Category", select:"text"})
+                          .exec()
+
+    return Promise.resolve(updatedQiz)
+  }catch(error){
+    return Promise.reject(error)
+  }
+}

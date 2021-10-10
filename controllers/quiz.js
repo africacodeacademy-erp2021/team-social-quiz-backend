@@ -112,6 +112,22 @@ exports.quizById = async (req, res) =>{
   }
 }
 
+exports.updateQuiz = async (req, res) =>{
+  try{
+    const {
+      quizId,
+      updatedInfo
+    } = req.body
+
+    let updatedQuiz = await quizUtils.updateQuiz(quizId, updatedInfo)
+
+    return res.send(updatedQuiz)
+  }catch(error){
+    console.log(error)
+    return res.status(500).send(error)
+  }
+}
+
 
 
 

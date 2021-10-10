@@ -64,6 +64,7 @@ app.get(`${BASE_URL}/quizzes/published`, quizController.getPublishedQuizes)
 app.post(`${BASE_URL}/quiz/publish`, quizController.publishQuiz)
 app.post(`${BASE_URL}/quiz/publish/remove`, quizController.unpublishQuiz)
 app.get(`${BASE_URL}/quiz`, quizController.quizById)
+app.put(`${BASE_URL}/quiz`, quizController.updateQuiz)
 
 // Questions endpoints
 app.get(`${BASE_URL}/questions/quiz`, questionController.getQuizQuestions)
