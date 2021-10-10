@@ -47,6 +47,15 @@ app.use('/auth', user)
 app.use('/auth', login)
 app.use('/getuser', getuser)
 
+// controller imports
+
+const categoryController = require("./controllers/category")
+
+// Category endpoints
+app.post(`${BASE_URL}/category`, categoryController.createCategory)
+app.get(`${BASE_URL}/category`, categoryController.getCategory)
+app.get(`${BASE_URL}/catgeories`, categoryController.getCategories)
+
 
 
 http.createServer(app).listen(process.env.PORT, () => {
