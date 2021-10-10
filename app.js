@@ -60,7 +60,7 @@ app.get(`${BASE_URL}/catgeories`, categoryController.getCategories)
 // Quiz endpoints
 app.post(`${BASE_URL}/quiz`, quizController.createQuiz);
 app.get(`${BASE_URL}/quiz`, quizController.getAllQuiz)
-
+app.get(`${BASE_URL}/quiz/published`, quizController.getPublishedQuizes)
 
 http.createServer(app).listen(process.env.PORT, () => {
     console.log(

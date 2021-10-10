@@ -64,3 +64,20 @@ exports.doesQuizExist = async (title) =>{
   return Promise.resolve(quiz != null)
 }
 
+
+/**
+ * getPublishedQuizList
+ * 
+ * 
+ * @returns Resolved promise of a list published quiz objects
+ */
+exports.getPublishedQuizList = async () =>{
+  try{
+    let quiz = await Quiz.find({isPublished:true})
+                          .populate({path:"category", model:"Category", select:"text"})
+                          .exec()
+    return Promise.resolve(quiz)
+  }catch(error){
+    return Promise.reject(error)
+  }
+}

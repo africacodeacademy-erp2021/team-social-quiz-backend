@@ -57,6 +57,21 @@ exports.getAllQuiz = async (req, res) => {
   }
 };
 
+exports.getPublishedQuizes = async (req, res) =>{
+  try {
+    let quizList = await quizUtils.getPublishedQuizList();
+
+    if (quizList.length > 0) {
+      return res.send(quizList);
+    } else {
+      return res.status(204).send(quizList);
+    }
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500);
+  }
+}
+
 
 
 
