@@ -81,6 +81,66 @@ exports.startSinglePlayerGame = async (req, res) => {
   }
 };
 
+// INCOMPLETE FUNCTIONS
+
+exports.getNextQuestion = async (req, res) =>{
+  try{
+    const {
+      gameId
+    } = req.body
+
+  }catch(error){
+    console.log(error);
+    return res.status(500).send(error);
+  }
+}
+
+exports.submitQuestionAnswer = async (req, res) =>{
+  try{
+
+    const {
+      gameId,
+      answer,
+      question
+    } = req.body
+
+
+
+  }catch(error){
+    console.log(error);
+    return res.status(500).send(error);
+  }
+}
+
+exports.endGame = async (req, res) =>{
+  try{
+
+    const {
+      gameId,
+    } = req.body
+
+
+
+  }catch(error){
+    console.log(error);
+    return res.status(500).send(error);
+  }
+}
+
+exports.restartGame = async (req, res) =>{
+  try{
+
+    const {
+      gameId,
+    } = req.body
+
+
+
+  }catch(error){
+    console.log(error);
+    return res.status(500).send(error);
+  }
+}
 
 
 
