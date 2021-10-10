@@ -6,6 +6,8 @@
  const dotenv = require("dotenv");
  const mongoose = require("mongoose");
  const mongoSanitize = require('express-mongo-sanitize');
+ const bodyParser = require("body-parser");
+
  
 
  /**
@@ -20,6 +22,9 @@ dotenv.config({
 const app = express();
 //sanitize requests against special chars, some precaution against NoSQL Injection Attacks
 app.use(mongoSanitize())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:true}));
+
 
  /**
  * Connect to MongoDB.
@@ -50,7 +55,7 @@ mongoose.connection.on("error", err => {
  * TODO: Protect user routes
  */
  app.get("/users", userController.getAllUsers);
- app.put("/Publish_quiz", publishQuizController.QuizPublish )
+ app.put("/quizzes", publishQuizController.QuizPublish );
  
 
 /**
