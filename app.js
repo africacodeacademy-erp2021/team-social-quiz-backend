@@ -50,12 +50,15 @@ app.use('/getuser', getuser)
 // controller imports
 
 const categoryController = require("./controllers/category")
+const quizController = require("./controllers/quiz")
 
 // Category endpoints
 app.post(`${BASE_URL}/category`, categoryController.createCategory)
 app.get(`${BASE_URL}/category`, categoryController.getCategory)
 app.get(`${BASE_URL}/catgeories`, categoryController.getCategories)
 
+// Quiz endpoints
+app.post(`${BASE_URL}/quiz`, quizController.createQuiz);
 
 
 http.createServer(app).listen(process.env.PORT, () => {
