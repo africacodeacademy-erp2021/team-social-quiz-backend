@@ -62,6 +62,7 @@ app.post(`${BASE_URL}/quiz`, quizController.createQuiz);
 app.get(`${BASE_URL}/quizzes`, quizController.getAllQuiz)
 app.get(`${BASE_URL}/quizzes/published`, quizController.getPublishedQuizes)
 app.post(`${BASE_URL}/quiz/publish`, quizController.publishQuiz)
+app.get(`${BASE_URL}/quiz`, quizController.quizById)
 
 http.createServer(app).listen(process.env.PORT, () => {
     console.log(

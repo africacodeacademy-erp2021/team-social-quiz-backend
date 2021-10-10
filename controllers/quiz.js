@@ -44,7 +44,7 @@ exports.createQuiz = async (req, res) => {
 
 exports.getAllQuiz = async (req, res) => {
   try {
-    let quizList = await quizUtils.getAllQuizes();
+    let quizList = await quizUtils.getAllQuizzes();
 
     if (quizList.length > 0) {
       return res.send(quizList);
@@ -78,6 +78,20 @@ exports.publishQuiz = async (req, res) =>{
       quizId
     } = req.body
     let quiz = await quizUtils.publishQuiz(quizId)
+    return res.send(quiz)
+  }catch(error){
+    console.log(error)
+    return res.status(500).send(error)
+  }
+}
+
+exports.quizById = async (req, res) =>{
+  try{
+    const {
+      quizId
+    } = req.query
+    
+    let quiz = await quizUtils.getQuizById(quizId)
     return res.send(quiz)
   }catch(error){
     console.log(error)

@@ -104,3 +104,22 @@ exports.publishQuiz = async (quizId) => {
     return Promise.reject(error)
   }
 }
+
+/**
+ * getQuizById
+ * 
+ * fetch a single quiz object given a quizId
+ * @param {*} quizId 
+ * @returns quiz object
+ */
+ exports.getQuizById = async (quizId) => {
+  try{
+    let quiz = await Quiz.findOne({_id: new ObjectId(quizId)})
+                          .populate({path:"category", model:"Category", select:"text"})
+                          .exec()
+
+    return Promise.resolve(quiz)
+  }catch(error){
+    return Promise.reject(error)
+  }
+}
