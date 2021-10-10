@@ -139,6 +139,17 @@ exports.getPopularQuiz = async (req, res) =>{
   }
 }
 
+exports.getPopularQuiz2 = async (req, res) =>{
+  try{
+    let quiz = await quizUtils.findMostPlayedQuizList()
+    res.send(quiz)
+  }
+  catch(error){
+    console.log(error)
+    return res.status(500).send(error)
+  }
+}
+
 
 
 

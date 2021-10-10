@@ -181,13 +181,35 @@ exports.publishQuiz = async (quizId) => {
  */
  exports.findMostPlayedQuiz = async () => {
   try{
-    let quiz = await Quiz.find({})
+    let quiz = await Quiz.findOne({})
                           .populate({path:"category", model:"Category", select:"text"})
                           .sort({popularity:-1})
                           .limit(1)
                           .exec()
 
     return Promise.resolve(quiz)
+    
+    
+  }catch(error){
+    return Promise.reject(error)
+  }
+}
+
+/**
+ * findMostPlayedQuizList
+ * 
+ * 
+ * @returns list of quiz objects
+ */
+ exports.findMostPlayedQuizList = async () => {
+  try{
+    let quizList = await Quiz.find({})
+                          .populate({path:"category", model:"Category", select:"text"})
+                          .sort({popularity:-1})
+                          .limit(10)
+                          .exec()
+
+    return Promise.resolve(quizList)
     
     
   }catch(error){

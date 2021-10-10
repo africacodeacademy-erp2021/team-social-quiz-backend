@@ -74,6 +74,7 @@ app.put(`${BASE_URL}/quiz/publish/remove`, quizController.unpublishQuiz)
 app.get(`${BASE_URL}/quiz`, quizController.quizById)
 app.put(`${BASE_URL}/quiz`, quizController.updateQuiz)
 app.get(`${BASE_URL}/quiz/popular`, quizController.getPopularQuiz)
+app.get(`${BASE_URL}/quiz/trending`, quizController.getPopularQuiz2)
 
 // Questions endpoints
 app.get(`${BASE_URL}/questions/quiz`, questionController.getQuizQuestions)
@@ -92,6 +93,9 @@ app.post(`${BASE_URL}/game/singleplayer`, gameController.initializeSinglePlayerG
 app.post(`${BASE_URL}/game/multiplayer`, gameController.initializeMultiplayerGame)
 app.post(`${BASE_URL}/game/teams`, gameController.initializeTeamGame)
 app.put(`${BASE_URL}/game/singleplayer/start`, gameController.startSinglePlayerGame)
+
+app.put(`${BASE_URL}/game/answer`, gameController.submitQuestionAnswer) // Incomplete
+app.post(`${BASE_URL}/game/question/next`, gameController.getNextQuestion) // Incomplete
 
 http.createServer(app).listen(process.env.PORT, () => {
     console.log(
