@@ -1,6 +1,7 @@
 // Module imports
 
 const User = require('../models/User');
+const { Role } = require('../utils/Constants');
 
 const userUtils = require("../utils/userUtils")
 
@@ -87,3 +88,16 @@ exports.getAllGames = async (req, res) => {
       return res.sendStatus(500);
     }
   };
+
+exports.elevateToAdmin = async (req, res) => {
+  try {
+    const {userId} = req.body
+
+    let user = await userUtils.updatePlayerRole(userId, Role.ADMIN)
+    return res.send(user);
+
+  } catch (error) {
+    console.log(error)
+    return res.status(500).send("failed to elevate user role");
+  }
+};

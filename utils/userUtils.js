@@ -73,3 +73,31 @@ try{
 }
 
 }
+
+/**
+ * updatePlayerRole
+ * 
+ * returns a users with given playerId
+ * 
+ * @param {String} userId
+ * @param {String} role
+ * @returns Resolved promise with user info
+ */
+ exports.updatePlayerRole = async (userId, role) =>{
+  try{
+    //TODO: Update user access scopes
+    let user = await User.findOneAndUpdate(
+      {_id:new ObjectId(userId)},
+      {role:role}, 
+      {new : true}
+    ).exec()
+  
+    if(user != null)
+      return Promise.resolve(user)
+    else
+      return Promise.reject("user doesnt exist")
+  }catch(error){
+    return Promise.reject(error)
+  }
+  
+  }
