@@ -32,6 +32,22 @@ const userSchema = new mongoose.Schema(
       default: 0,
     },
 
+    username: {
+      type: String,
+      required: true
+  },
+
+  password:{
+      type: String,
+      required: true
+  },
+
+  channel:{
+      type: String,
+      required: false,
+  },
+
+
     status: {
       type: Boolean,
       default: true,
@@ -55,6 +71,4 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-const User = mongoose.model("Users", userSchema);
-
-module.exports = User;
+module.exports = mongoose.model("User", userSchema);
