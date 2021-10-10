@@ -5,6 +5,9 @@ const { Role } = require('../utils/Constants');
 
 const userUtils = require("../utils/userUtils")
 
+
+//functions
+
 exports.getAllUsers = async (req, res) =>{
     try{
 

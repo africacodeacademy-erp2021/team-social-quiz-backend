@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 
 const gameUtils = require("../utils/gameUtils");
 
+//functions
+
 exports.initializeSinglePlayerGame = async (req, res) => {
   try {
 

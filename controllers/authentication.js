@@ -2,6 +2,8 @@
 
 const authUtils = require("../utils/authUtils")
 
+//Functions
+
 exports.register = async (req, res) =>{
     try{
         const {

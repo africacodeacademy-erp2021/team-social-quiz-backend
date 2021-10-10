@@ -37,7 +37,7 @@ exports.registerUser = async (accessToken, refreshToken, email, channel, usernam
     // TODO: confirm if password matches with confirmPassword
     // TODO: use bycrpt to hash the password
     // TODO: Add user access scopes
-    
+
     let newUser = await new User({
       password:password,
       email: email,
@@ -51,5 +51,16 @@ exports.registerUser = async (accessToken, refreshToken, email, channel, usernam
     return Promise.reject(error)
   }
   
+}
+
+
+// incomplete functions
+
+exports.generateAccessToken = async () =>{
+
+}
+
+exports.generateRefreshToken = async () =>{
+
 }
 

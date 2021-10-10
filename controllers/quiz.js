@@ -6,6 +6,9 @@ const Quiz = require("../models/Quiz");
 const quizUtils = require("../utils/quizUtils");
 const questionUtils = require("../utils/questionUtils");
 const { ObjectId } = require("mongodb");
+
+// Functions
+
 exports.createQuiz = async (req, res) => {
   try {
 

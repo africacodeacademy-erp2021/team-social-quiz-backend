@@ -39,6 +39,13 @@ const Quiz = require('../models/Quiz');
   
 }
 
+/**
+ * 
+ * @param {String} text 
+ * @param {String} questionId 
+ * @param {Boolean} isCorrect 
+ * @returns 
+ */
 exports.createAnswer = async (text, questionId, isCorrect) =>{
     let answer = await new Answers({
       text:text,

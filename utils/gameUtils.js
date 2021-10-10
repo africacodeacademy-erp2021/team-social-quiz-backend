@@ -57,7 +57,7 @@ exports.initializeSinglePlayerGame = async (quizId, initPlayer) =>{
 }
 
 /**
- * initializeTeamrGame
+ * initializeTeamGame
  * 
  * created a team player game
  * 
