@@ -59,6 +59,7 @@ app.get(`${BASE_URL}/catgeories`, categoryController.getCategories)
 
 // Quiz endpoints
 app.post(`${BASE_URL}/quiz`, quizController.createQuiz);
+app.get(`${BASE_URL}/quiz`, quizController.getAllQuiz)
 
 
 http.createServer(app).listen(process.env.PORT, () => {

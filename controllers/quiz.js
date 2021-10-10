@@ -44,7 +44,7 @@ exports.createQuiz = async (req, res) => {
 
 exports.getAllQuiz = async (req, res) => {
   try {
-    let quizList = await quizUtils.getPlatformQuiz();
+    let quizList = await quizUtils.getAllQuizes();
 
     if (quizList.length > 0) {
       return res.send(quizList);

@@ -9,7 +9,9 @@ const Quiz = require('../models/Quiz');
  */
 exports.getAllQuizes = async () =>{
   try{
-    let quiz = await Quiz.find({}).exec()
+    let quiz = await Quiz.find({})
+                          .populate({path:"category", model:"Category", select:"text"})
+                          .exec()
     return Promise.resolve(quiz)
   }catch(error){
     return Promise.reject(error)
@@ -61,3 +63,4 @@ exports.doesQuizExist = async (title) =>{
 
   return Promise.resolve(quiz != null)
 }
+
