@@ -172,3 +172,25 @@ exports.publishQuiz = async (quizId) => {
     return Promise.reject(error)
   }
 }
+
+/**
+ * findMostPlayedQuiz
+ * 
+ * 
+ * @returns quiz object
+ */
+ exports.findMostPlayedQuiz = async () => {
+  try{
+    let quiz = await Quiz.find({})
+                          .populate({path:"category", model:"Category", select:"text"})
+                          .sort({popularity:-1})
+                          .limit(1)
+                          .exec()
+
+    return Promise.resolve(quiz)
+    
+    
+  }catch(error){
+    return Promise.reject(error)
+  }
+}
