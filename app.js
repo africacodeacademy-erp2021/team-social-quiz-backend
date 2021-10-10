@@ -24,6 +24,7 @@ app.use(mongoSanitize())
  /**
  * Connect to MongoDB.
  */
+ const connection = require("../models/Connection.js")
 mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
 mongoose.set("useUnifiedTopology", true);

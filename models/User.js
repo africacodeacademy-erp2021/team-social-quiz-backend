@@ -7,14 +7,29 @@ const userSchema = new mongoose.Schema(
   {
     email: {
       type: String,
-      unique: true
+      unique: true,
     },
 
-    refreshToken: { type:String },
-    accessToken: {  type:String },
+    refreshToken: { type: String },
+    accessToken: { type: String },
     role: {
       type: String,
-      default: Role.PLAYER
+      default: Role.PLAYER,
+    },
+
+    game_history:{
+      type: Number,
+      default: 0, 
+    },
+
+    channel:{
+      type: String,
+      
+    },
+
+    platform_points:{
+      type: Number,
+      default: 0,
     },
 
     status: {
@@ -22,29 +37,24 @@ const userSchema = new mongoose.Schema(
       default: true,
     },
     profile: {
+
       name: {
-        firstname: {
+        screen_name: {
           type: String,
-          trim: true
+          trim: true,
         },
-        lastname: {
-          type: String,
-          trim: true
-        }
       },
-      gender: String,
-    }
+      
+    },
   },
   {
     timestamps: true,
     toJSON: {
-      transform: omitUserDetails
-    }
+      transform: omitUserDetails,
+    },
   }
 );
 
-
-
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("Users", userSchema);
 
 module.exports = User;
