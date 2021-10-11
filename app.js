@@ -64,16 +64,20 @@ mongoose.connection.on("error", err => {
 /**
  * Express configuration.
  */
-app.set("host", "127.0.0.1");
-app.set("port", process.env.PORT);
+//app.set("host", "127.0.0.1");
+//app.set("port", process.env.PORT);
+app.set('port', (process.env.PORT || 8000));
 
-
-app.listen(app.get("port"), () => {
-    console.log(
-        "%s App is running at http://localhost:%d in %s mode",
-        chalk.green("✓"),
-        app.get("port")
-    );
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => {
+  if (err) 
+  {
+    console.log("We have error");
+    console.log(err);
+    return;
+  }
+  console.log('listening on port 8000');
 });
+
 
 module.exports = app;
