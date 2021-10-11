@@ -64,14 +64,9 @@ const app = express();
 app.set('port', (process.env.PORT || 8000));
 
 const PORT = process.env.PORT || 8000;
-app.listen(PORT, function(err) {
-  if (err) 
-  {
-    console.log("We have error");
-    console.log(err);
-    return;
-  }
-  console.log('listening on port 8000');
+app.listen(PORT, () => {
+  
+  console.log('listening on $ {PORT}');
 });
 
 
