@@ -10,7 +10,10 @@ const Quiz = require("../models/Quiz");
  */
 exports.getPopularQuizzes = async () => {
   try {
-    let popularquizzes = await Quiz.find({}).sort({ popularity: -1 }).exec();
+    let popularquizzes = await Quiz.find({})
+    .sort({ popularity: -1 })
+    .limit(2)
+    .exec();
     return Promise.resolve(popularquizzes);
   } catch (error) {
     console.log(error);
