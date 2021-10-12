@@ -41,10 +41,10 @@ workflows:
   orb-free-workflow:
     jobs:
       # - test
-      - build
+      # - build
       - heroku/deploy-via-git:
-          requires:
-            - build
+          # requires:
+          #   - build
           filters:
               branches:
                 only: dev
