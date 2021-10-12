@@ -13,8 +13,8 @@ jobs:
           name: install packages
           command: npm i
     - run:
-        name: build for production
-        command: npm run build
+        name: start production application
+        command: npm run start
   test:
     docker:
       - image: cimg/node:15.1
@@ -41,12 +41,7 @@ workflows:
   orb-free-workflow:
     jobs:
       - test
-      - build:
-          requires:
-            - test
       - heroku/deploy-via-git:
-          requires:
-            - build
           filters:
               branches:
-                only: main
+                only: dev
