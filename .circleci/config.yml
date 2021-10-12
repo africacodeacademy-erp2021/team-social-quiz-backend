@@ -12,9 +12,9 @@ jobs:
     - run:
           name: install packages
           command: npm i
-    - run:
-        name: start production application
-        command: npm run start
+    # - run:
+    #     name: start production application
+    #     command: npm run start
   test:
     docker:
       - image: cimg/node:15.1
