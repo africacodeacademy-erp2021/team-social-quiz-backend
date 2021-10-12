@@ -1,11 +1,11 @@
 {
-  "name": "cloudsync",
+  "name": "aca-tsq",
   "version": "1.0.0",
   "description": "ACA TEAM SOCLIAL BACKEND",
   "main": "app.js",
   "scripts": {
     "test": "test",
-    "start": "app.js",
+    "start": "./app.js",
     "dev": "nodemon ./app.js"
   },
   "repository": {
