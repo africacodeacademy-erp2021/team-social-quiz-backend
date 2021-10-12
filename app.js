@@ -58,7 +58,7 @@ const gameController = require("./controllers/game")
 
 // Auth endpoints
 app.post(`${BASE_URL}/register`, authController.register)
-app.post(`${BASE_URL}/acoount`, authController.register)
+app.post(`${BASE_URL}/acount`, authController.register)
 
 // Category endpoints
 app.post(`${BASE_URL}/category`, categoryController.createCategory)
@@ -97,7 +97,7 @@ app.put(`${BASE_URL}/game/singleplayer/start`, gameController.startSinglePlayerG
 app.put(`${BASE_URL}/game/answer`, gameController.submitQuestionAnswer) // Incomplete
 app.post(`${BASE_URL}/game/question/next`, gameController.getNextQuestion) // Incomplete
 
-http.createServer(app).listen(process.env.PORT, () => {
+http.createServer(app).listen(process.env.PORT,'0.0.0.0', () => {
     console.log(
       "App is running at http://localhost:%d ",
       process.env.PORT,
