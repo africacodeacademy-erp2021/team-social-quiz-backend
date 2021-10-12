@@ -10,7 +10,10 @@ const User = require("../models/User");
  */
 exports.getAllGamesByPlayer = async () => {
   try {
-    let UserHistory = await User.find({ email:req.body.email }, { game_history: 1 }).exec();
+    let UserHistory = await User.find(
+      { email: req.body.email },
+      { game_history: 1 }
+    ).exec();
     return Promise.resolve(UserHistory);
   } catch (error) {
     return Promise.reject(error);
