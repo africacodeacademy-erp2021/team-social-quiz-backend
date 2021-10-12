@@ -1,6 +1,6 @@
 // Module imports
 
-const authUtils = require("../utils/authUtils")
+const authUtils = require("../utils/AuthUtils")
 
 //Functions
 

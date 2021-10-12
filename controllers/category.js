@@ -1,6 +1,6 @@
 // Module imports
 
-const categoryUtils = require("../utils/categoryUtils")
+const categoryUtils = require("../utils/CategoryUtils")
 
 exports.createCategory = async (req, res) =>{
     try{

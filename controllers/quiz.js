@@ -3,8 +3,8 @@ const bodyParser = require("body-parser");
 // Module imports
 const Quiz = require("../models/Quiz");
 
-const quizUtils = require("../utils/quizUtils");
-const questionUtils = require("../utils/questionUtils");
+const quizUtils = require("../utils/QuizUtils");
+const questionUtils = require("../utils/QuestionUtils");
 const { ObjectId } = require("mongodb");
 
 // Functions

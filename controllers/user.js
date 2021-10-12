@@ -3,7 +3,7 @@
 const User = require('../models/User');
 const { Role } = require('../utils/Constants');
 
-const userUtils = require("../utils/userUtils")
+const userUtils = require("../utils/UserUtils")
 
 
 //functions
