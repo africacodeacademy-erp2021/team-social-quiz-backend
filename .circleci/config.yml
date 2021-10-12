@@ -40,7 +40,7 @@ workflows:
   version:  2.1
   orb-free-workflow:
     jobs:
-      - test
+      # - test
       - heroku/deploy-via-git:
           filters:
               branches:
