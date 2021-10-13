@@ -5,4 +5,4 @@ exports.omitUserDetails = (doc, obj) => {
     delete obj.password;
     delete obj.accessScopes
     return obj
-}
+};

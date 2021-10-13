@@ -1,11 +1,11 @@
-const express = require('express')
-const router = express.Router()
-const  {check, validationResult} = require('express-validator')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+const express = require('express');
+const router = express.Router();
+const  {check, validationResult} = require('express-validator');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const saltRounds = 10;
 
-const User = require('../models/User')
+const User = require('../models/User');
 
 router.post(
     "/login",

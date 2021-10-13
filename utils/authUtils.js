@@ -1,6 +1,6 @@
 // Module imports
 
-const User = require("../models/User")
+const User = require("../models/User");
 
 /**
  * register platform user
