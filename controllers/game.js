@@ -136,7 +136,8 @@ exports.restartGame = async (req, res) =>{
       gameId,
     } = req.body
 
-
+    let game = await gameUtils.startGame(gameId);
+    return res.send(game);
 
   }catch(error){
     console.log(error);
