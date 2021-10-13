@@ -2,11 +2,10 @@
   "name": "aca-tsq",
   "version": "1.0.0",
   "description": "ACA TEAM SOCLIAL BACKEND",
-  "main": "app.js",
   "scripts": {
     "test": "test",
-    "start": "node ./app.js",
-    "dev": "nodemon ./app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
