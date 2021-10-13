@@ -1,3 +1,5 @@
+
+const { getAllGamesByPlayer } = require("../utils/quizUtils")
 exports.getAllGames = async (req, res) => {
   try {
     var { email } = req.body;
