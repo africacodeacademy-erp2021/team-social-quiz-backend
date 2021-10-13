@@ -23,7 +23,7 @@ exports.getPlatformUsers = async () =>{
  *
  * returns all platform Quizes
  * @returns Resolved promise with Platform Quizes
- * @param {String} email
+ * @param {objectid} id
  */
 exports.getAllGamesByPlayer = async (id) => {
   try {
