@@ -1,3 +1,6 @@
+const { ObjectId } = require("mongodb");
+const User = require("../models/User");
+
 /**
  * getPlatformUsers
  * 
@@ -13,8 +16,7 @@ exports.getPlatformUsers = async () =>{
   }
   
 }
-const { ObjectId } = require("mongodb");
-const User = require("../models/User");
+
 
 /**
  * getAllGames
@@ -23,10 +25,10 @@ const User = require("../models/User");
  * @returns Resolved promise with Platform Quizes
  * @param {String} email
  */
-exports.getAllGamesByPlayer = async (email) => {
+exports.getAllGamesByPlayer = async (id) => {
   try {
     let UserHistory = await User.find(
-      { email:email },
+      { _id:id },
       { game_history: 1 }
     ).exec();
     return Promise.resolve(UserHistory);

@@ -7,9 +7,9 @@ const { getAllGamesByPlayer } = require("../utils/userUtils")
 
 exports.getAllGames = async (req, res) => {
   try {
-    var { email } = req.body;
+    var { _id } = req.body;
 
-    let playerHistory = await getAllGamesByPlayer(email);
+    let playerHistory = await getAllGamesByPlayer(_id);
 
     if (playerHistory === 0) {
       return res.send("User doesn't exist");
