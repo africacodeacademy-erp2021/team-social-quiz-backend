@@ -20,7 +20,6 @@ const Category = require('../models/Category');
     return Promise.resolve(newCategory)
 
   }catch(error){
-    console.log(error);
     return Promise.reject(error)
   }
   

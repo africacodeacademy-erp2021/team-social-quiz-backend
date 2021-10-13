@@ -20,7 +20,7 @@ exports.register = async (req, res) =>{
         
 
     }catch(error){
-        console.log(error)
+        // console.log(error)
         return res.sendStatus(500)
     }
     
@@ -42,7 +42,7 @@ exports.adminAccount = async (req, res) =>{
         
 
     }catch(error){
-        console.log(error)
+        // console.log(error)
         return res.sendStatus(500)
     }
     

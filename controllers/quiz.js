@@ -40,7 +40,7 @@ exports.createQuiz = async (req, res) => {
       return res.send("Quiz of that title already exist");
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return res.status(500).send(error);
   }
 };
@@ -55,7 +55,7 @@ exports.getAllQuiz = async (req, res) => {
       return res.status(204).send(quizList);
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return res.sendStatus(500);
   }
 };
@@ -70,7 +70,7 @@ exports.getPublishedQuizes = async (req, res) =>{
       return res.status(204).send(quizList);
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return res.sendStatus(500);
   }
 }
@@ -83,7 +83,7 @@ exports.publishQuiz = async (req, res) =>{
     let quiz = await quizUtils.publishQuiz(quizId)
     return res.send(quiz)
   }catch(error){
-    console.log(error)
+    // console.log(error)
     return res.status(500).send(error)
   }
 }
@@ -96,7 +96,7 @@ exports.unpublishQuiz = async (req, res) =>{
     let quiz = await quizUtils.unpublishQuiz(quizId)
     return res.send(quiz)
   }catch(error){
-    console.log(error)
+    // console.log(error)
     return res.status(500).send(error)
   }
 }
@@ -110,7 +110,7 @@ exports.quizById = async (req, res) =>{
     let quiz = await quizUtils.getQuizById(quizId)
     return res.send(quiz)
   }catch(error){
-    console.log(error)
+    // console.log(error)
     return res.status(500).send(error)
   }
 }
@@ -126,7 +126,7 @@ exports.updateQuiz = async (req, res) =>{
 
     return res.send(updatedQuiz)
   }catch(error){
-    console.log(error)
+    // console.log(error)
     return res.status(500).send(error)
   }
 }
@@ -137,7 +137,7 @@ exports.getPopularQuiz = async (req, res) =>{
     res.send(quiz)
   }
   catch(error){
-    console.log(error)
+    // console.log(error)
     return res.status(500).send(error)
   }
 }
@@ -148,7 +148,7 @@ exports.getPopularQuiz2 = async (req, res) =>{
     res.send(quiz)
   }
   catch(error){
-    console.log(error)
+    // console.log(error)
     return res.status(500).send(error)
   }
 }

@@ -20,7 +20,7 @@ exports.initializeSinglePlayerGame = async (req, res) => {
     return res.send(game)
       
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return res.status(500).send(error);
   }
 };
@@ -40,7 +40,7 @@ exports.initializeTeamGame = async (req, res) => {
     return res.send(game)
       
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return res.status(500).send(error);
   }
 };
@@ -59,7 +59,7 @@ exports.initializeMultiplayerGame = async (req, res) => {
     return res.send(game)
       
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return res.status(500).send(error);
   }
 };
@@ -78,7 +78,7 @@ exports.startSinglePlayerGame = async (req, res) => {
     return res.send(game)
       
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return res.status(500).send(error);
   }
 };
@@ -92,7 +92,7 @@ exports.getNextQuestion = async (req, res) =>{
     } = req.body
 
   }catch(error){
-    console.log(error);
+    // console.log(error);
     return res.status(500).send(error);
   }
 }
@@ -109,7 +109,7 @@ exports.submitQuestionAnswer = async (req, res) =>{
 
 
   }catch(error){
-    console.log(error);
+    // console.log(error);
     return res.status(500).send(error);
   }
 }
@@ -124,7 +124,7 @@ exports.endGame = async (req, res) =>{
 
 
   }catch(error){
-    console.log(error);
+    // console.log(error);
     return res.status(500).send(error);
   }
 }
@@ -139,7 +139,7 @@ exports.restartGame = async (req, res) =>{
 
 
   }catch(error){
-    console.log(error);
+    // console.log(error);
     return res.status(500).send(error);
   }
 }

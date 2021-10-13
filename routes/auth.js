@@ -39,7 +39,7 @@ router.post(
                 channel
             } = req.body;
 
-            console.log(req.body.username)
+            // console.log(req.body.username)
 
             try{
                 let user = await User.findOne({
@@ -59,7 +59,7 @@ router.post(
                     channel
                 });
 
-                console.log(req.body)
+                // console.log(req.body)
                 
                 bcrypt.hash(password, 10, (err, hash) =>{
                     user.password = hash
@@ -67,7 +67,7 @@ router.post(
                     
                 });
 
-                console.log(user.password)
+                // console.log(user.password)
                 
 
                 const payload = {
@@ -89,7 +89,7 @@ router.post(
 
                     });
             }catch (e) {
-                console.log(e.message)
+                // console.log(e.message)
                 res.status(500).send("Error in Saving")
             }
         }

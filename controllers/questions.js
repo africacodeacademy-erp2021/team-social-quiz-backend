@@ -19,7 +19,7 @@ exports.getQuizQuestions = async (req, res) => {
       return res.status(204).send(questionsList);
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return res.sendStatus(500);
   }
 };

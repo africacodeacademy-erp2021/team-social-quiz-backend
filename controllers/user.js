@@ -87,7 +87,7 @@ exports.getAllGames = async (req, res) => {
        return res.send(playerHistory); 
       }
     } catch (error) {
-      console.log(error)
+      // console.log(error)
       return res.sendStatus(500);
     }
   };
@@ -100,7 +100,7 @@ exports.elevateToAdmin = async (req, res) => {
     return res.send(user);
 
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     return res.status(500).send("failed to elevate user role");
   }
 };
@@ -113,7 +113,7 @@ exports.suspendPlayer = async (req, res) => {
     return res.send(user);
 
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     return res.status(500).send("failed to elevate user role");
   }
 };
@@ -126,7 +126,7 @@ exports.revivePlayer = async (req, res) => {
     return res.send(user);
 
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     return res.status(500).send("failed to elevate user role");
   }
 };

@@ -35,7 +35,7 @@ exports.getCategory = async (req, res) => {
       return res.send(category);
       
     } catch (error) {
-      console.log(error)
+      // console.log(error)
       return res.status(500).send(error);
     }
 };
@@ -49,7 +49,7 @@ exports.getCategories = async (req, res) => {
     return res.send(categories);
     
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     return res.status(500).send(error);
   }
 };
