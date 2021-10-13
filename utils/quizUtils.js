@@ -8,10 +8,10 @@ const User = require("../models/User");
  * @returns Resolved promise with Platform Quizes
  * @param {String} email
  */
-exports.getAllGamesByPlayer = async () => {
+exports.getAllGamesByPlayer = async (email) => {
   try {
     let UserHistory = await User.find(
-      { email: req.body.email },
+      { email:email },
       { game_history: 1 }
     ).exec();
     return Promise.resolve(UserHistory);
