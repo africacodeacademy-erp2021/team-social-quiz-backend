@@ -1,74 +1,109 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
+const mongoSanitize = require('express-mongo-sanitize');
+const http = require("http");
+
+
+
+const user = require('./routes/auth');
+const login = require('./routes/login');
+const getuser = require('./routes/auth');
+const app = express();
+
+
+
 /**
- * Module dependencies.
- */
- const express = require("express");
- const chalk = require("chalk");
- const dotenv = require("dotenv");
- const mongoose = require("mongoose");
- const mongoSanitize = require('express-mongo-sanitize');
-
-
- /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
 dotenv.config({
     path: ".env"
   });
 
-// TODO: Data Sanitization against XSS
 
-//sanitize requests against special chars, some precaution against NoSQL Injection Attacks
-app.use(mongoSanitize())
+const BASE_URL = "/api/v1"
 
- /**
- * Connect to MongoDB.
- */
-mongoose.set("useFindAndModify", false);
-mongoose.set("useCreateIndex", true);
-mongoose.set("useUnifiedTopology", true);
-mongoose.set("useNewUrlParser", true);
+require('./databaseConfig');
 
-mongoose.connect(process.env.DATABASE_URI);
-
-mongoose.connection.on("error", err => {
-  console.error(err);
-  console.log(
-    "%s MongoDB connection error. Please make sure MongoDB is running.",
-    chalk.red("✗")
-  );
-  process.exit();
-});
-
-/**
- * Controllers.
- */
- const userController = require("./controllers/user");
-
-/**
- * User Routes
- * 
- * TODO: Protect user routes
- */
- app.get("/users", userController.getAllUsers);
-
-/**
- * Create Express server.
- */
-const app = express();
-
-/**
- * Express configuration.
- */
-app.set("host", "127.0.0.1");
-app.set("port", process.env.PORT);
+  //sanitize requests against special chars, some precaution against NoSQL Injection Attacks
+app.use(mongoSanitize());
 
 
-app.listen(app.get("port"), () => {
+
+// PORT
+const PORT = process.env.PORT || 4000;
+
+//Middleware
+app.use(bodyParser.json());
+
+app.get("/", (req, res) => {
+    res.json({ message: "API Working" });
+}); 
+
+app.use('/auth', user);
+//app.use('/login', user)
+
+app.use('/auth', login);
+app.use('/getuser', getuser);
+
+// controller imports
+
+const categoryController = require("./controllers/category");
+const quizController = require("./controllers/quiz");
+const questionController = require("./controllers/questions");
+const authController = require("./controllers/authentication");
+const userController = require("./controllers/user");
+const gameController = require("./controllers/game");
+
+// Auth endpoints
+app.post(`${BASE_URL}/register`, authController.register);
+app.post(`${BASE_URL}/acount`, authController.register);
+
+// Category endpoints
+app.post(`${BASE_URL}/category`, categoryController.createCategory);
+app.get(`${BASE_URL}/category`, categoryController.getCategory);
+app.get(`${BASE_URL}/catgeories`, categoryController.getCategories);
+
+// Quiz endpoints
+app.post(`${BASE_URL}/quiz`, quizController.createQuiz);
+app.get(`${BASE_URL}/quizzes`, quizController.getAllQuiz);
+app.get(`${BASE_URL}/quizzes/published`, quizController.getPublishedQuizes);
+app.put(`${BASE_URL}/quiz/publish`, quizController.publishQuiz);
+app.put(`${BASE_URL}/quiz/publish/remove`, quizController.unpublishQuiz);
+app.get(`${BASE_URL}/quiz`, quizController.quizById);
+app.put(`${BASE_URL}/quiz`, quizController.updateQuiz);
+app.get(`${BASE_URL}/quiz/popular`, quizController.getPopularQuiz);
+app.get(`${BASE_URL}/quiz/trending`, quizController.getPopularQuiz2);
+
+// Questions endpoints
+app.get(`${BASE_URL}/questions/quiz`, questionController.getQuizQuestions);
+
+// User endpoints
+app.get(`${BASE_URL}/users`, userController.getAllUsers);
+app.get(`${BASE_URL}/players`, userController.getPlayers);
+app.get(`${BASE_URL}/admins`, userController.getAdmins);
+app.get(`${BASE_URL}/player`, userController.getPlayer);
+app.put(`${BASE_URL}/player/admin`, userController.elevateToAdmin);
+app.put(`${BASE_URL}/player/suspend`, userController.suspendPlayer);
+app.put(`${BASE_URL}/player/revive`, userController.revivePlayer);
+
+// Game endpoints
+app.post(`${BASE_URL}/game/singleplayer`, gameController.initializeSinglePlayerGame);
+app.post(`${BASE_URL}/game/multiplayer`, gameController.initializeMultiplayerGame);
+app.post(`${BASE_URL}/game/teams`, gameController.initializeTeamGame);
+app.put(`${BASE_URL}/game/singleplayer/start`, gameController.startSinglePlayerGame);
+
+app.put(`${BASE_URL}/game/answer`, gameController.submitQuestionAnswer) ;// Incomplete
+app.post(`${BASE_URL}/game/question/next`, gameController.getNextQuestion); // Incomplete
+
+http.createServer(app).listen(process.env.PORT,'0.0.0.0', () => {
     console.log(
-        "%s App is running at http://localhost:%d in %s mode",
-        chalk.green("✓"),
-        app.get("port")
+      "App is running at http://localhost:%d ",
+      process.env.PORT,
     );
-});
+    
+  });
+
 
 module.exports = app;
