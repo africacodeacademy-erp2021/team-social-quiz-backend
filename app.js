@@ -6,6 +6,12 @@
  const dotenv = require("dotenv");
  const mongoose = require("mongoose");
  const mongoSanitize = require('express-mongo-sanitize');
+ const app = express();
+ const initiateServer = require('./server')
+ const submit = require('./controllers/submitAnswer')
+
+initiateServer()
+
 
 
  /**
@@ -23,27 +29,34 @@ app.use(mongoSanitize())
  /**
  * Connect to MongoDB.
  */
-mongoose.set("useFindAndModify", false);
-mongoose.set("useCreateIndex", true);
-mongoose.set("useUnifiedTopology", true);
-mongoose.set("useNewUrlParser", true);
+// mongoose.set("useFindAndModify", false);
+// mongoose.set("useCreateIndex", true);
+// mongoose.set("useUnifiedTopology", true);
+// mongoose.set("useNewUrlParser", true);
 
-mongoose.connect(process.env.DATABASE_URI);
+// mongoose.connect(process.env.DATABASE_URI);
 
-mongoose.connection.on("error", err => {
-  console.error(err);
-  console.log(
-    "%s MongoDB connection error. Please make sure MongoDB is running.",
-    chalk.red("✗")
-  );
-  process.exit();
-});
+// mongoose.connection.on("error", err => {
+//   console.error(err);
+//   console.log(
+//     "%s MongoDB connection error. Please make sure MongoDB is running.",
+//     chalk.red("✗")
+//   );
+//   process.exit();
+// });
 
 /**
  * Controllers.
  */
  const userController = require("./controllers/user");
 
+ app.get("/", (req, res)=>{
+   res.json({
+     message:"Api working"
+   })
+ })
+
+ app.get("/submitAnswer", submit)
 /**
  * User Routes
  * 
@@ -54,13 +67,13 @@ mongoose.connection.on("error", err => {
 /**
  * Create Express server.
  */
-const app = express();
+//const app = express();
 
 /**
  * Express configuration.
  */
 app.set("host", "127.0.0.1");
-app.set("port", process.env.PORT);
+app.set("port", 4000);
 
 
 app.listen(app.get("port"), () => {
