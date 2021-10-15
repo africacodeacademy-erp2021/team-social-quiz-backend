@@ -87,22 +87,7 @@ exports.getPlayer = async (req, res) =>{
   
 }
 
-exports.getAllGames = async (req, res) => {
-    try {
-      let playerHistory = await User.find({_id: req.body._id},
-      { game_history: 1 }
-    ).exec();;
-  
-      if (playerHistory === 0) {
-        return res.send("User doesn't exist");
-      } else {
-       return res.send(playerHistory); 
-      }
-    } catch (error) {
-      // console.log(error)
-      return res.sendStatus(500);
-    }
-  };
+
 
 exports.elevateToAdmin = async (req, res) => {
   try {
