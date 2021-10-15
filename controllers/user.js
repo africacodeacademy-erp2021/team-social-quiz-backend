@@ -65,7 +65,7 @@ exports.getAdmins = async (req, res) =>{
 exports.getPlayer = async (req, res) =>{
   try{
 
-    const {playerId} = req.query
+    const {playerId} = req.body
       let player = await userUtils.getPlayerById(playerId)
       return res.send(player)
   
