@@ -4,7 +4,7 @@ mongoose.connect(process.env.DATABASE_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
-});
+}, console.log("Connected success"));
 
 
 mongoose.connection.on("error", err => {

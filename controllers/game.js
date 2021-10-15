@@ -118,10 +118,8 @@ exports.endGame = async (req, res) =>{
   try{
 
     const {
-      gameId,
+      gameId
     } = req.body
-
-
 
   }catch(error){
     console.log(error);
