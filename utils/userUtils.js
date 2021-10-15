@@ -155,3 +155,19 @@ exports.suspendPlayer = async (userId) =>{
   }
 
 }
+/**
+ * getAllGames
+ *
+ * returns all platform Quizes
+ * @returns Resolved promise with Platform Quizes
+ * @param {objectid} id
+ */
+exports.getAllGamesByPlayer = async (id) => {
+  try {
+    let UserHistory = await User.find(
+      { _id:id }).populate('_id','game_history').exec();
+    return Promise.resolve(UserHistory);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
