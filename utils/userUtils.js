@@ -168,6 +168,7 @@ exports.getAllGamesByPlayer = async (id) => {
       { _id:id }).populate('_id','game_history').exec();
     return Promise.resolve(UserHistory);
   } catch (error) {
+    console.log(error)
     return Promise.reject(error);
   }
 };
