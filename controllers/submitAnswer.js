@@ -1,20 +1,17 @@
 const bodyParser = require("body-parser");
 const Quiz = require("../models/Quiz")
-const express = require("express")
-const router = express.Router()
+const Question = require("../models/Question")
+const Answer = require("../models/Answers")
 
 
-router.get(
-  "/submitAnwser",
-
-  async (req, res) =>{
+exports.submitAnswer =  async (req, res) =>{
     try{
   
       const {
         gameId,
-        answer,
-        question,
-        quizId
+        answer_id,
+        question_id,
+        quiz_id
       } = req.body
   
       if(!req.body){
@@ -23,49 +20,42 @@ router.get(
         })
       }
 
-      const quiz_id = quizId;
-      
-
-      Quiz.findById(quiz_id).then(data =>{
-        if(!data)
-        {
-          res.status(404).send({
-            message: "Quiz not found"
-          })
-        }else{
-          if(answer.is_correct === true){
-
-            res.send({
-              message: "Next Question"
-            })
-
-          }else{
-            let total_score = question.points + data.total_score;
-            Quiz.findBiIdAndUpdate(quiz_id,{"total_score": total_score}, {useFindAndModify: false} )
-            .then(data =>{
-  
-              if(!data){
-                res.status(404).send({
-                  message: "Quiz not found"
-                })
-              }else{
-                res.send({
-                  message : "Okay"
-                })
-              }
-            });
-          }
-        }
+      let quiz = await Quiz.findOne({
+        quiz_id
       })
 
+      let question = await Question.findOne({
+        question_id
+      })
       
-  
-  
+      let answer = await Answer.findOne({
+        answer_id
+      })
+
+      if(answer.is_correct === true){
+
+        let total_score = question.points + quiz.total_score;
+
+        Quiz.findOneAndUpdate(quiz.id, {
+          "total_score": total_score
+        }, {useFindAndModify: false})
+        .then(data =>{
+          if(!data){
+            res.status(404).send({
+              message: "Error in updating"
+            })
+          }else{
+            //call next question
+          }
+        })
+
+      }else{
+        //call next question
+
+      }
   
     }catch(error){
       console.log(error);
       return res.status(500).send(error);
     }
   }
-
-)
