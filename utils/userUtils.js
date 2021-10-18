@@ -2,7 +2,7 @@
 
 const { ObjectId } = require('mongodb');
 const User = require('../models/User');
-const { Role } = require('./Constants');
+const { Role } = require('./constants');
 
 /**
  * getPlatformUsers

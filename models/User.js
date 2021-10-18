@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const ObjectId = mongoose.Schema.Types.ObjectId;
-const { omitUserDetails } = require("../utils/ObjectUtils");
-const { Role } = require("../utils/Constants");
+const { omitUserDetails } = require("../utils/objectUtils");
+const { Role } = require("../utils/constants");
 
 const userSchema = new mongoose.Schema(
   {

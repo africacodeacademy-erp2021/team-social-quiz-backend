@@ -1,7 +1,7 @@
 const { ObjectId } = require('mongodb');
 const Game = require('../models/Game');
-const { GameType } = require('./Constants');
-const quizUtils = require('./QuizUtils');
+const { GameType } = require('./constants');
+const quizUtils = require('./quizUtils');
 
 /**
  * initializeSinglePlayerGame
