@@ -1,9 +1,9 @@
 // Module imports
 
 const User = require('../models/User');
-const { Role } = require('../utils/Constants');
+const { Role } = require('../utils/constants');
 
-const userUtils = require("../utils/UserUtils");
+const userUtils = require("../utils/userUtils");
 
 
 //functions

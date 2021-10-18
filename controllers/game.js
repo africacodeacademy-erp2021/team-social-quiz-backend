@@ -2,7 +2,7 @@ const bodyParser = require("body-parser");
 
 // Module imports
 
-const gameUtils = require("../utils/GameUtils");
+const gameUtils = require("../utils/gameUtils");
 
 //functions
 
