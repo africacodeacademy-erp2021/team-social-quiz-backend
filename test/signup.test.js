@@ -2,6 +2,7 @@ const chai = require("chai");
 const assert = require("chai").assert;
 const chaiHttp = require("chai-http");
 const app = require("../app");
+const register = require("../controllers/authentication").register.email;
 
 chai.should();
 chai.use(chaiHttp);
@@ -34,7 +35,9 @@ describe("SignUp API", () => {
 
       done();
     });
-    it("fields should be of required types", () => {
+
+
+    it("email should be type of email", () => {
         chai
           .request(app)
           .post("/register")
@@ -45,12 +48,10 @@ describe("SignUp API", () => {
             accessToken: "accessToken",
             refreshToken: "refreshToken",
           })
-          .end((err, response) => {
-            response.should.have.status(200);
-            response.should.be.a("object");
-            assert.typeOf(email, "email");
-            assert.typeOf(channel, "channel");
-            assert.typeOf(username, "string");
+          .end(() => {
+            let result = register;  
+            assert.typeOf(result, "email");
+            
           });
       });
     
