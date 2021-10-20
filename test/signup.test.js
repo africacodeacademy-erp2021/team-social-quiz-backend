@@ -34,6 +34,25 @@ describe("SignUp API", () => {
 
       done();
     });
+    it("fields should be of required types", () => {
+        chai
+          .request(app)
+          .post("/register")
+          .send({
+            username: "profile.name.screenName",
+            channel: "channel",
+            email: "email",
+            accessToken: "accessToken",
+            refreshToken: "refreshToken",
+          })
+          .end((err, response) => {
+            response.should.have.status(200);
+            response.should.be.a("object");
+            assert.typeOf(email, "email");
+            assert.typeOf(channel, "channel");
+            assert.typeOf(username, "string");
+          });
+      });
     
   });
 });
