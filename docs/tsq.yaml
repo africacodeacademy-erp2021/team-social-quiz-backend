@@ -1,0 +1,197 @@
+openapi: 3.0.0
+servers:
+  - url: //ec2-13-245-160-50.af-south-1.compute.amazonaws.com/
+    description: Test server
+  - url: //ec2-13-245-160-50.af-south-1.compute.amazonaws.com/
+    description: Sandbox server
+info:
+  description: |
+    
+    # Introduction
+    This API is documented in **OpenAPI format** and is built by the development team at AFRICA CODE ACADEMY
+    This document explains the api endpoints provided by the team social quiz backend service
+    If you encounter any issues or inconsistancies with this document or the api, feel free to reach out at the API SUPPORT email provided above
+
+    
+    
+    # HTTP Request Body
+
+    Most of the parameters and data accompanying your requests will be contained in the body of the HTTP request.
+
+    The TSQ REST API accepts JSON in the HTTP request body. No other data format (e.g., XML) is supported
+
+    # Testing a Request
+
+    Use a third party client, such as curl, Postman, or Advanced REST Client, to test the TSQ REST API.
+
+    You can test the TSQ REST API from the TSQ API Sandbox. 
+
+  version: 1.0.0
+  title: Team Social Quiz (TSQ) Backend
+  termsOfService: 'link to Ts & Cs doc'
+  contact:
+    name: API Support
+    email: elias@africacode.academy
+    url: https://github.com/eliasbayona
+
+tags:
+  - name: user
+    description: Everything about a user
+  - name: quiz
+    description: Access to quiz
+  - name: category
+    description: Operations about a category
+  - name: game
+    description: Operations about a game
+  - name: question
+    description: Operations about a question
+  - name: answer
+    description: Operations about an answer
+  - name: leaderboard
+    description: Operations about a leaderboard
+  - name: user_model
+    x-displayName: The User Model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/User" />
+
+
+x-tagGroups:
+  - name: General
+    tags:
+      - user
+      - quiz
+      - category
+      - question
+      - answer
+      - game
+      - leaderboard
+  - name: Models
+    tags:
+      - user_model
+      - category_model
+      - question_model
+      - answer_model
+      - quiz_model
+      - game_model
+      - leaderboard_model
+paths:
+  /api/v1/users:
+    parameters:
+      - name: Authorization
+        in: header
+        description: "User's Access token"
+        example: "Bearer API.$2a$10$Tb7b8FWtwq5rl9ve4HO1t.J962I33EvTxL43eC0zEfk7U0HFzVQs2"
+        required: true
+        schema:
+          type: string
+      
+    get:
+      tags:
+        - user
+      summary: Gets platform users
+      description: Returns a list of all platform users.
+      operationId: getPlatformUsers
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid status value
+      security:
+        - access_token: []
+      x-codeSamples:
+        - lang: 'JavaScript'
+          label: 'NodeJs'
+          source: |
+            const axios = require("axios")
+            const request = axios.create({
+              baseURL: '',
+              headers:{
+                Authorization: Bearer <access_token>
+              }
+            })
+            request.get('/api/v1/users')
+                    .then(response =>{
+                      // the response data
+                    })
+      
+    
+components:
+  schemas:
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+    User:
+      type: object
+      properties:
+        _id:
+          description: User ID
+          allOf:
+            - $ref: '#/components/schemas/Id'
+        role:
+          description: User platform role
+          type: string
+        platformPoints:
+          description: Organisations name
+          type: integer
+        profile: 
+          type: object
+          properties:
+            name:
+              type: object
+              properties:
+                screenName:
+                  type: string
+                  description: player screen name
+                  example: Johon
+        email:
+          type: string
+          description: user email      
+        channel:
+          type: string
+          description: user auth / signup channel
+        status:
+          type: boolean
+          description: user platform status
+        gameHistory:
+          allOf:
+            - $ref: '#/components/schemas/Id'
+          description: list of games played
+        createdAt:
+          type: timestamp
+          description: timestamp of object creation
+        updatedAt:
+          type: timestamp
+          description: timestamp of last modification log
+      xml:
+        name: Ticket
+    Id:
+      type: string
+      readOnly: true
+  securitySchemes:
+    access_token:
+      description: >
+        An access token should should have been generated frm the login endpoint. 
+        Example Authorization `Bearer API.$2a$10$Tb7b8FWtwq5r6Ave4HO1t.J962I33EvTxL43eC0zEfk7U0HFzVQs2 `
+      type: Access token
+      name: Authorization
+      in: header
+  examples:
+    Order:
+      value:
+        quantity: 1
+        shipDate: '2021-10-30T16:46:45Z'
+        status: placed
+        complete: false
