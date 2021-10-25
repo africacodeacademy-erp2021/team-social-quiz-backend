@@ -87,3 +87,25 @@ describe("REGISTER AN ADMIN", () => {
 });
 
 
+describe("login endpoint", () => {
+  it("expects a 200 status if username and password are entered with correct datatypes ", (done) => {
+    chai
+      .request(app)
+      .post("/api/v1/login")
+      .send({
+        username: "profile.name.screenName",
+        password: "password"
+      })
+
+      .end((err, response) => {
+        response.should.have.status(200);
+        response.should.be.a("object");
+        response.should.have.property("username").assert.typeOf('string');
+        response.should.have.property("password").assert.isAbove('8');
+        response.should.not.be.empty;
+      });
+
+    done();
+  });
+
+});  
