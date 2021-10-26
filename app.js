@@ -81,7 +81,7 @@ app.get(`${BASE_URL}/questions/quiz`, questionController.getQuizQuestions);
 
 // User endpoints
 app.get(`${BASE_URL}/users`, userController.getAllUsers);
-app.get(`${BASE_URL}/players`, userController.getPlayers);
+app.get(`${BASE_URL}/players`, userController.getAllGames);
 app.get(`${BASE_URL}/player/history`, userController.getAllGames);
 app.get(`${BASE_URL}/admins`, userController.getAdmins);
 app.get(`${BASE_URL}/player`, userController.getPlayer);

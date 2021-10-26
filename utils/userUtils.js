@@ -164,9 +164,15 @@ exports.suspendPlayer = async (userId) =>{
  */
 exports.getAllGamesByPlayer = async (id) => {
   try {
-    let UserHistory = await User.find(
-      { _id:id }).populate('_id','game_history').exec();
-    return Promise.resolve(UserHistory);
+    let UserHistory = await User.find({ _id:id }).lean()
+    .populate('user','game_history').exec(function (err, history){ 
+      if (history.user.game_history) {
+        return Promise.resolve(UserHistory);
+    } else {
+      return Promise.reject("user doesnt have game history")
+    }
+    });
+    
   } catch (error) {
     console.log(error)
     return Promise.reject(error);
