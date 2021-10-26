@@ -1,35 +1,51 @@
-const express = require('express');
-const mongoose = require('mongoose');
+const express = require("express");
+const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
-const mongoSanitize = require('express-mongo-sanitize');
+const mongoSanitize = require("express-mongo-sanitize");
 const http = require("http");
 
-
-
-const user = require('./routes/auth');
-const login = require('./routes/login');
-const getuser = require('./routes/auth');
+const user = require("./routes/auth");
+const login = require("./routes/login");
+const getuser = require("./routes/auth");
 const app = express();
 
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 
+const swaggerOptions = {
+  swaggerDefinition: {
+    info: {
+      title: "TSQ backend  API",
+      description: "TSQ API documentation",
+      contact: {
+        name: "Africa Code Academy",
+      },
+      servers: ["http://localhost:8081"],
+    },
+  },
+  //
+  apis: ["./docs/endpointsdocs.js"],
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+console.log(swaggerDocs);
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
 dotenv.config({
-    path: ".env"
-  });
+  path: ".env",
+});
 
+const BASE_URL = "/api/v1";
 
-const BASE_URL = "/api/v1"
+require("./databaseConfig");
 
-require('./databaseConfig');
-
-  //sanitize requests against special chars, some precaution against NoSQL Injection Attacks
+//sanitize requests against special chars, some precaution against NoSQL Injection Attacks
 app.use(mongoSanitize());
-
-
 
 // PORT
 const PORT = process.env.PORT || 4000;
@@ -38,14 +54,15 @@ const PORT = process.env.PORT || 4000;
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-    res.json({ message: "API Working" });
-}); 
+  res.json({ message: "API Working" });
+});
 
-app.use('/auth', user);
+app.use("/auth", user);
 //app.use('/login', user)
 
-app.use('/auth', login);
-app.use('/getuser', getuser);
+
+app.use("/auth", login);
+app.use("/getuser", getuser);
 
 // controller imports
 
@@ -89,23 +106,26 @@ app.put(`${BASE_URL}/player/suspend`, userController.suspendPlayer);
 app.put(`${BASE_URL}/player/revive`, userController.revivePlayer);
 
 // Game endpoints
-app.post(`${BASE_URL}/game/singleplayer`, gameController.initializeSinglePlayerGame);
-app.post(`${BASE_URL}/game/multiplayer`, gameController.initializeMultiplayerGame);
+app.post(
+  `${BASE_URL}/game/singleplayer`,
+  gameController.initializeSinglePlayerGame
+);
+app.post(
+  `${BASE_URL}/game/multiplayer`,
+  gameController.initializeMultiplayerGame
+);
 app.post(`${BASE_URL}/game/teams`, gameController.initializeTeamGame);
-app.put(`${BASE_URL}/game/singleplayer/start`, gameController.startSinglePlayerGame);
+app.put(
+  `${BASE_URL}/game/singleplayer/start`,
+  gameController.startSinglePlayerGame
+);
 
-app.put(`${BASE_URL}/game/answer`, gameController.submitQuestionAnswer) ;// Incomplete
+app.put(`${BASE_URL}/game/answer`, gameController.submitQuestionAnswer); // Incomplete
 app.post(`${BASE_URL}/game/question/next`, gameController.getNextQuestion); // Incomplete
-
 app.put(`${BASE_URL}/game/restartgame`, gameController.restartGame);
 
-http.createServer(app).listen(process.env.PORT,'0.0.0.0', () => {
-    console.log(
-      "App is running at http://localhost:%d ",
-      process.env.PORT,
-    );
-    
-  });
-
+http.createServer(app).listen(process.env.PORT, "0.0.0.0", () => {
+  console.log("App is running at http://localhost:%d ", process.env.PORT);
+});
 
 module.exports = app;
