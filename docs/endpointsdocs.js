@@ -141,7 +141,7 @@
 *                                       type: double
 *                                       description: Question Points
 *                                       example: 25
-*                       catecory:
+*                       category:
 *                           type: string 
 *                       score:
 *                           type: integer
@@ -157,6 +157,41 @@
 *                   description: A successful response            
 */
 // Create Quiz documentation start here
+
+// Update Quiz Start Here
+/**
+* @swagger
+* /api/v1/quiz:
+*   put:
+*     tags:
+*       - Update Quiz
+*     description: Update Quiz
+*     parameters:
+*       - name: reqBody
+*         description: request body
+*         in: body
+*         schema:
+*           type: object
+*           properties:
+*             quizId:
+*               type: string
+*             updatedInfo:
+*               type: object
+*               properties:
+*                  title:
+*                      type: string  
+*                  description:
+*                      type: string 
+*                  totalScore:
+*                      type: string 
+*           required:
+*             - quizId
+*     responses:
+*       '200':
+*         description: A successful response
+*/
+
+// Update Quiz End Here
 
 /**
  * @swagger
