@@ -88,7 +88,7 @@ describe("REGISTER AN ADMIN", () => {
   it("password characters should atleast be more than 8", () => {
     chai
       .request(app)
-      .post("/api/v1/account")
+      .post("/api/v1/acount")
       .send({
         username: "profile.name.screenName",
         channel: "channel",
