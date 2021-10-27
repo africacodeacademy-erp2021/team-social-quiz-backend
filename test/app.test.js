@@ -84,7 +84,25 @@ describe("REGISTER AN ADMIN", () => {
       done();
     });
   });
+
+  it("password characters should atleast be more than 8", () => {
+    chai
+      .request(app)
+      .post("/api/v1/account")
+      .send({
+        username: "profile.name.screenName",
+        channel: "channel",
+        email: "email",
+        accessToken: "accessToken",
+        refreshToken: "refreshToken",
+      })
+      .end(() => {
+        let result = registerAdmin;
+        assert.isAtLeast(result, "8");
+      });
+  });
 });
+
 
 
 describe("login endpoint", () => {
