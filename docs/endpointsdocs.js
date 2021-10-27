@@ -98,8 +98,102 @@
 
 // Create Quiz documentation start here
 
-
+/**
+*   @swagger
+*   /api/v1/quiz:
+*       post:
+*           tags:
+*               - Create Quiz End Point
+*           description: Create Quiz 
+*           parameters:
+*               - name: reqBody
+*                 description: request body
+*                 in: body
+*                 schema:
+*                   type: object
+*                   properties:
+*                       title:
+*                           type: string
+*                       description:
+*                           type: string
+*                       questions:
+*                           type: array
+*                           items:
+*                               type: object
+*                               properties:
+*                                   text:
+*                                       type: string
+*                                       description: Question text
+*                                       example: What is my name
+*                                   answers:
+*                                       type: array
+*                                       items:
+*                                           type: object
+*                                           properties:
+*                                               text:
+*                                                   type: string
+*                                                   description: Answer text
+*                                                   example: TW
+*                                               isCorrect:
+*                                                   type: boolean
+*                                                   description: state of an answer
+*                                   points:
+*                                       type: double
+*                                       description: Question Points
+*                                       example: 25
+*                       category:
+*                           type: string 
+*                       score:
+*                           type: integer
+*                   required:
+*                       - title
+*                       - description
+*                       - questions
+*                       - category
+*                       - score
+*           
+*           responses:
+*               '200':
+*                   description: A successful response            
+*/
 // Create Quiz documentation start here
+
+// Update Quiz Start Here
+/**
+* @swagger
+* /api/v1/quiz:
+*   put:
+*     tags:
+*       - Update Quiz
+*     description: Update Quiz
+*     parameters:
+*       - name: reqBody
+*         description: request body
+*         in: body
+*         schema:
+*           type: object
+*           properties:
+*             quizId:
+*               type: string
+*             updatedInfo:
+*               type: object
+*               properties:
+*                  title:
+*                      type: string  
+*                  description:
+*                      type: string 
+*                  category:
+*                      type: string  
+*                  totalScore:
+*                      type: integer 
+*           required:
+*             - quizId
+*     responses:
+*       '200':
+*         description: A successful response
+*/
+
+// Update Quiz End Here
 
 /**
  * @swagger
