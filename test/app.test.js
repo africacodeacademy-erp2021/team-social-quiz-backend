@@ -63,7 +63,7 @@ describe("REGISTER AN ADMIN", () => {
     it("should fill out all fields and validate password ", (done) => {
       chai
         .request(app)
-        .post("/api/v1/account")
+        .post("/api/v1/acount")
         .send({
           username: "profile.name.screenName",
           channel: "channel",
