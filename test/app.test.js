@@ -63,7 +63,7 @@ describe("REGISTER AN ADMIN", () => {
     it("should fill out all fields and validate password ", (done) => {
       chai
         .request(app)
-        .post("/api/v1/account")
+        .post("/api/v1/acount")
         .send({
           username: "profile.name.screenName",
           channel: "channel",
@@ -84,28 +84,47 @@ describe("REGISTER AN ADMIN", () => {
       done();
     });
   });
+
+  it("password characters should atleast be more than 8", () => {
+    chai
+      .request(app)
+      .post("/api/v1/acount")
+      .send({
+        username: "profile.name.screenName",
+        channel: "channel",
+        email: "email",
+        accessToken: "accessToken",
+        refreshToken: "refreshToken",
+      })
+      .end(() => {
+        let result = registerAdmin;
+        assert.isAtLeast(result, "8");
+      });
+  });
 });
 
+/**
+ * login test for all users
+ */
 
 describe("login endpoint", () => {
   it("expects a 200 status if username and password are entered with correct datatypes ", (done) => {
     chai
       .request(app)
-      .post("/api/v1/login")
+      .post("/auth/login")
       .send({
         username: "profile.name.screenName",
-        password: "password"
+        password: "password",
       })
 
       .end((err, response) => {
         response.should.have.status(200);
         response.should.be.a("object");
-        response.should.have.property("username").assert.typeOf('string');
-        response.should.have.property("password").assert.isAbove('8');
+        response.should.have.property("username").assert.typeOf("string");
+        response.should.have.property("password").assert.isAbove("8");
         response.should.not.be.empty;
       });
 
     done();
   });
-
-});  
+});
