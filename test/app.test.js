@@ -111,7 +111,7 @@ describe("login endpoint", () => {
   it("expects a 200 status if username and password are entered with correct datatypes ", (done) => {
     chai
       .request(app)
-      .post("/api/v1/login")
+      .post("/auth/login")
       .send({
         username: "profile.name.screenName",
         password: "password",
