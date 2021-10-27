@@ -182,8 +182,10 @@
 *                      type: string  
 *                  description:
 *                      type: string 
+*                  category:
+*                      type: string  
 *                  totalScore:
-*                      type: string 
+*                      type: integer 
 *           required:
 *             - quizId
 *     responses:
