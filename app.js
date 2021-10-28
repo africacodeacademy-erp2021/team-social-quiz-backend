@@ -21,7 +21,7 @@ const swaggerOptions = {
       contact: {
         name: "Africa Code Academy",
       },
-      servers: ["http://ec2-13-245-160-50.af-south-1.compute.amazonaws.com"],
+      servers: ["http://ec2-13-245-160-50.af-south-1.compute.amazonaws.com"], 
     },
   },
   //

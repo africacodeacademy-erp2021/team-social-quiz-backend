@@ -27,6 +27,31 @@
  */
 // Login endpoint Documentation end here
 
+/**
+*   @swagger
+*   /api/v1/register:
+*       post:
+*           tags:
+*               - Create New User
+*           description: Post New User
+*           parameters:
+*               - name: reqBody
+*                 description: request body
+*                 in: body
+*                 schema: 
+*                   type: object
+*                   properties:
+*                       email:
+*                           type: string
+*                       username:
+*                           type: string
+*                       channel:
+*                           type: string
+*           responses:
+*               '200':
+*                   description: A successfull response
+*/
+
 // Create Category endpoint documentation start here
 
 /**
