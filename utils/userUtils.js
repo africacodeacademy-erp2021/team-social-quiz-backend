@@ -62,7 +62,9 @@ exports.getPlatformUsers = async () =>{
  */
 exports.getPlayerById = async (playerId) =>{
 try{
-  let user = await User.findOne({_id:new ObjectId(playerId)}).exec()
+  let user = await User.findOne({_id:new ObjectId(playerId)},
+  { role: Role.PLAYER }
+  ).exec()
 
   if(user != null)
     return Promise.resolve(user)
