@@ -29,21 +29,14 @@ router.post(
       const { username, password } = req.body;
       try {
         let user = await User.findOne({
-          username
+          "profile.name.screenName":username,
+           password: password 
         });
+        
         if (!user)
           return res.status(400).json({
-            message: "User Not Exist"
+            message: "Sorry!! either username or password is incorrect"
           });
-  
-        const isMatch = await bcrypt.compare(password, user.password);
-      
-
-        if (!isMatch)
-          return res.status(400).json({
-            message: "Incorrect Password !"
-          });
-  
         const payload = {
           user: {
             id: user.id
