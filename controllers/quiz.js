@@ -20,7 +20,7 @@ exports.createQuiz = async (req, res) => {
       score,
     } = req.body;
    
-    if (!await quizUtils.doesQuizExist(title) && category == new ObjectId(category)) {
+    if (!await quizUtils.doesQuizExist(title) &&  ObjectId.isValid(category)) {
       
         let newQuiz = await quizUtils.createQuiz(title,description,category,score)
 
@@ -30,7 +30,7 @@ exports.createQuiz = async (req, res) => {
         }))
   
         newQuiz["questions"]=quizQuestions.map(question => {return new ObjectId(question._id)})
-        newQuiz = await newQuiz.save()
+        newQuiz = await newQuiz.save() 
   
         // repopulate quiz object
   
@@ -38,13 +38,12 @@ exports.createQuiz = async (req, res) => {
         return res.send(newQuiz);
       
     } else {
-      return res.send("Quiz of that title already exist");
+      return res.send("NOT CREATED!! Please make sure category its correctly categoryId");
     }
   } catch (error) {
     // console.log(error);
-    return(
-      res.send("NOT CREATED!! Please make sure category its correctly categoryId")
-    ) 
+    return res.send("Quiz of that title already exist")
+     
   }
 };
 
