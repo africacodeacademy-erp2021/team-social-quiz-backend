@@ -21,7 +21,7 @@ exports.register = async (req, res) =>{
 
     }catch(error){
         // console.log(error)
-        return res.sendStatus(500)
+        return res.send("Please fill out all the fields")
     }
     
 }
@@ -43,7 +43,7 @@ exports.adminAccount = async (req, res) =>{
 
     }catch(error){
         // console.log(error)
-        return res.sendStatus(500)
+        return res.send("Please fill out all the fields")
     }
     
 }

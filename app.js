@@ -75,7 +75,7 @@ const gameController = require("./controllers/game");
 
 // Auth endpoints
 app.post(`${BASE_URL}/register`, authController.register);
-app.post(`${BASE_URL}/acount`, authController.register);
+app.post(`${BASE_URL}/account`, authController.adminAccount);
 
 // Category endpoints
 app.post(`${BASE_URL}/category`, categoryController.createCategory);
