@@ -1,4 +1,6 @@
 const register = require("../controllers/authentication").register.email;
+const registerAdmin = require("../controllers/authentication").register
+  .password;
 const chai = require("chai");
 const assert = require("chai").assert;
 const chaiHttp = require("chai-http");
