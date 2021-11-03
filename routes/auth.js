@@ -20,7 +20,7 @@ router.post(
             .isLength({
                 min: 8
             }),
-            check("channel", "Specify the Authentication type").isEmpty()
+            check("channel", "Specify the Authentication type").not().isEmpty() 
         ],
    
         async (req, res)=>{

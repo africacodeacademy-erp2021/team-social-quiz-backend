@@ -21,7 +21,7 @@ exports.register = async (req, res) =>{
 
     }catch(error){
         // console.log(error)
-        return res.send("Please fill out all the fields")
+        return res.status(500).json("Please fill out all the fields")
     }
     
 }
@@ -35,15 +35,16 @@ exports.adminAccount = async (req, res) =>{
           password,
           confirmPassword
         } = req.body
-
-
         let registeredUser = await authUtils.registerAdmin(password, confirmPassword, email, channel, username)
-        res.send(registeredUser)
+        if(password === confirmPassword){
+            res.send(registeredUser)
+        }else{
+            res.status(400).json("Password do not match")
+        }
         
-
     }catch(error){
         // console.log(error)
-        return res.send("Please fill out all the fields")
+        return res.status(500).json("Please fill out all the fields")
     }
     
 }

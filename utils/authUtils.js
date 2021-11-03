@@ -1,4 +1,5 @@
 // Module imports
+const bcrypt = require("bcrypt");
 
 const User = require("../models/User");
 
@@ -44,7 +45,11 @@ exports.registerUser = async (accessToken, refreshToken, email, channel, usernam
       channel: channel,
       accessScopes:[],
       "profile.name.screenName":username,
-    }).save()
+    });
+
+    const salt = await bcrypt.genSalt(10);
+    newUser.password = await bcrypt.hash(newUser.password, salt);
+    newUser.save()
 
     return Promise.resolve(newUser)
   }catch(error){
