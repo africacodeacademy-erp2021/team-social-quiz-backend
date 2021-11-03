@@ -33,7 +33,7 @@ exports.registerUser = async (accessToken, refreshToken, email, channel, usernam
  * 
  * @returns Resolved promise with Platform users
  */
- exports.registerAdmin = async (password, confirmPassword, email, channel, username, res) =>{
+ exports.registerAdmin = async (password, confirmPassword, email, channel, username) =>{
   try{
     // TODO: confirm if password matches with confirmPassword
     // TODO: use bycrpt to hash the password
