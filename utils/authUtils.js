@@ -33,11 +33,12 @@ exports.registerUser = async (accessToken, refreshToken, email, channel, usernam
  * 
  * @returns Resolved promise with Platform users
  */
- exports.registerAdmin = async (password, confirmPassword, email, channel, username) =>{
+ exports.registerAdmin = async (password, confirmPassword, email, channel, username, res) =>{
   try{
     // TODO: confirm if password matches with confirmPassword
     // TODO: use bycrpt to hash the password
     // TODO: Add user access scopes
+    
 
     let newUser = await new User({
       password:password,
@@ -46,12 +47,19 @@ exports.registerUser = async (accessToken, refreshToken, email, channel, usernam
       accessScopes:[],
       "profile.name.screenName":username,
     });
-
-    const salt = await bcrypt.genSalt(10);
-    newUser.password = await bcrypt.hash(newUser.password, salt);
-    newUser.save()
-
-    return Promise.resolve(newUser)
+    if(!password || !email || !channel || !username){
+      return("Fill out all fields ")
+    }
+    
+      if (password === confirmPassword){        
+        const salt = await bcrypt.genSalt(10);
+        newUser.password = await bcrypt.hash(newUser.password, salt);
+        newUser.save()
+      }else{
+        return("Password do not match")
+      }
+    
+   
   }catch(error){
     return Promise.reject(error)
   }
