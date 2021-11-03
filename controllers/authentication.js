@@ -36,11 +36,7 @@ exports.adminAccount = async (req, res) =>{
           confirmPassword
         } = req.body
         let registeredUser = await authUtils.registerAdmin(password, confirmPassword, email, channel, username)
-        if(password === confirmPassword){
-            res.send(registeredUser)
-        }else{
-            res.status(400).json("Password do not match")
-        }
+        res.send(registeredUser)
         
     }catch(error){
         // console.log(error)
