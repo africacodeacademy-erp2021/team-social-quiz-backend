@@ -65,6 +65,11 @@ exports.registerAdmin = async (
       return Promise.reject("Invalid email");
     }
 
+    var strongPass = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    if(!strongPass.test(password)){
+      return Promise.reject("Password very weak, password should atleast have 8 characters, uppercase, lowercase, numeric and special character");
+    }
+
     if (password === confirmPassword) {
       const salt = await bcrypt.genSalt(10);
       password = await bcrypt.hash(password, salt);
