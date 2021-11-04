@@ -19,6 +19,7 @@
   "homepage": "https://github.com/africacodeacademy/team-social-quiz-backend#readme",
   "dependencies": {
     "axios": "^0.21.4",
+    "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "chalk": "^2.4.2",
@@ -31,7 +32,7 @@
     "express": "^4.17.1",
     "express-mongo-sanitize": "^2.0.1",
     "express-session": "^1.16.2",
-    "express-validator": "^6.12.2",
+    "express-validator": "^6.13.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.1.1",
     "mongoose": "^5.13.9",

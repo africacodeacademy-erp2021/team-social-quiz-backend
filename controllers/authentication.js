@@ -21,7 +21,7 @@ exports.register = async (req, res) =>{
 
     }catch(error){
         // console.log(error)
-        return res.sendStatus(500)
+        return res.status(500).json(error)
     }
     
 }
@@ -35,15 +35,12 @@ exports.adminAccount = async (req, res) =>{
           password,
           confirmPassword
         } = req.body
-
-
         let registeredUser = await authUtils.registerAdmin(password, confirmPassword, email, channel, username)
         res.send(registeredUser)
         
-
     }catch(error){
         // console.log(error)
-        return res.sendStatus(500)
+        return res.status(500).json(error)
     }
     
 }
