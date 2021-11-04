@@ -46,12 +46,23 @@ exports.registerAdmin = async (
   username
 ) => {
   try {
+    // TODO: check if all fields are filled out
+    // TODO: validate email
     // TODO: confirm if password matches with confirmPassword
     // TODO: use bycrpt to hash the password
     // TODO: Add user access scopes
 
     if (!password || !email || !channel || !username) {
       return Promise.reject("Fill out all fields ");
+    }
+
+    function validateEmail(email) {
+      const emailFormat =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      return emailFormat.test(String(email).toLowerCase());
+    }
+    if (!validateEmail(email)) {
+      return Promise.reject("Invalid email");
     }
 
     if (password === confirmPassword) {
