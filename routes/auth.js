@@ -40,6 +40,10 @@ router.post(
             } = req.body;
 
             // console.log(req.body.username)
+            var strongPass = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+            if(!strongPass.test(password)){
+                return res.status(400).json("Password very weak, password should atleast have 8 characters, uppercase, lowercase, numeric and special character");
+            }
 
             try{
                 let user = await User.findOne({
