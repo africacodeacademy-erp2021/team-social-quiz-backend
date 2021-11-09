@@ -70,6 +70,14 @@ exports.registerAdmin = async (
       return Promise.reject("Password very weak, password should atleast have 8 characters, uppercase, lowercase, numeric and special character");
     }
 
+    let user = await User.findOne({
+          email
+      });
+
+      if(user){
+          return Promise.reject("User Already Exists");
+      }
+      
     if (password === confirmPassword) {
       const salt = await bcrypt.genSalt(10);
       password = await bcrypt.hash(password, salt);
