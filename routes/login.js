@@ -4,6 +4,7 @@ const  {check, validationResult} = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const saltRounds = 10;
+const authUtils = require("../utils/authUtils");
 
 const User = require('../models/User');
 
@@ -44,6 +45,7 @@ router.post(
             message: "Incorrect Password !"
           });
 
+        let userToken = await authUtils.generateAccessToken() 
         const payload = {
           user: {
             id: user.id
@@ -53,18 +55,16 @@ router.post(
         jwt.sign(
           payload,
           "randomString",
-          {
-            expiresIn: 3600
-          },
-          (err, token) => {
+          
+          (err) => {
             if (err) throw err;
             res.status(200).json({
-              token
+              userToken
             });
           }
         );
       } catch (e) {
-        // console.error(e);
+        console.error(e);
         res.status(500).json({
           message: "Server Error"
         });
