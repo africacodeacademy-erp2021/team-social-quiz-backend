@@ -1,6 +1,9 @@
 // Module imports
 const bcrypt = require("bcrypt");
 const { check, validationResult } = require("express-validator");
+const dotenv = require("dotenv");
+const jwt = require('jsonwebtoken')
+const tokenList = {}
 const User = require("../models/User");
 
 /**
@@ -90,7 +93,32 @@ exports.registerAdmin = async (
 };
 
 // incomplete functions
+dotenv.config({
+  path: ".env",
+});
 
-exports.generateAccessToken = async () => {};
+exports.generateAccessToken = async (email,password) => {
+  try {
+    let user = new User({
+      email: email,
+      password: password
+    })
+
+    const token = jwt.sign(user.toJSON(), process.env.secret,{ expiresIn:  60 * 24})
+    const refreshToken = jwt.sign(user.toJSON(), process.env.refreshTokenSecret, { expiresIn: 3600})
+
+    const response = {
+      "status": "Success",
+      "token": token,
+      "refreshToken": refreshToken,
+  }
+  tokenList[refreshToken] = response
+  return Promise.resolve(response);
+
+  } catch(error){
+    return Promise.reject(error);
+  }
+
+};
 
 exports.generateRefreshToken = async () => {};
