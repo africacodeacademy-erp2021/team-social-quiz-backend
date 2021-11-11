@@ -13,43 +13,45 @@ const quizUtils = require('./quizUtils');
  * @returns Resolved promise with Game object
  */
 exports.initializeSinglePlayerGame = async (quizId, initPlayer) =>{
+
   try{    
-    let qs = {
-      quiz: new ObjectId(quizId),
-      host: new ObjectId(initPlayer),
-      players:[new ObjectId(initPlayer)],
-      gameType:GameType.SINGLE,
-    }
-
-    let newGame = await new Game(qs).save()
-
-    newGame = await newGame
-    .populate({
-      path:"players",
-      model:"User",
-      select:"profile"
-    })
-    .populate({
-      path:"host",
-      model:"User",
-      select:"profile"
-    }).populate({
-      path:"quiz",
-      model:"Quiz",
-      select:"title description category totalScore",
-      populate:{path:"category", model:"Category", select:"text"}
-    }).populate({
-      path:"currentQuestion",
-      model:"Question",
-      select:"answers text points",
-      populate:{
-        path:"answers", 
-        model:"Answers",
-        select:"isCorrect text"
+      let qs = {
+        quiz: new ObjectId(quizId),
+        host: new ObjectId(initPlayer),
+        players:[new ObjectId(initPlayer)],
+        gameType:GameType.SINGLE,
       }
-    }).execPopulate()
-
-    return Promise.resolve(newGame)
+  
+      let newGame = await new Game(qs).save()
+  
+      newGame = await newGame
+      .populate({
+        path:"players",
+        model:"User",
+        select:"profile"
+      })
+      .populate({
+        path:"host",
+        model:"User",
+        select:"profile"
+      }).populate({
+        path:"quiz",
+        model:"Quiz",
+        select:"title description category totalScore",
+        populate:{path:"category", model:"Category", select:"text"}
+      }).populate({
+        path:"currentQuestion",
+        model:"Question",
+        select:"answers text points",
+        populate:{
+          path:"answers", 
+          model:"Answers",
+          select:"isCorrect text"
+        }
+      }).execPopulate()
+  
+      return Promise.resolve(newGame) 
+    
   }catch(error){
     return Promise.reject(error)
   }

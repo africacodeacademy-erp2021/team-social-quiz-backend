@@ -80,7 +80,7 @@ app.post(`${BASE_URL}/account`, authController.adminAccount);
 // Category endpoints
 app.post(`${BASE_URL}/category`, categoryController.createCategory);
 app.get(`${BASE_URL}/category`, categoryController.getCategory);
-app.get(`${BASE_URL}/catgeories`, categoryController.getCategories);
+app.get(`${BASE_URL}/categories`, categoryController.getCategories);
 
 // Quiz endpoints
 app.post(`${BASE_URL}/quiz`, quizController.createQuiz);

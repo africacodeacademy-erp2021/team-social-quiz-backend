@@ -2,6 +2,8 @@ const bodyParser = require("body-parser");
 
 // Module imports
 
+const quizUtils = require("../utils/quizUtils");
+
 const gameUtils = require("../utils/gameUtils");
 
 //functions
@@ -13,12 +15,10 @@ exports.initializeSinglePlayerGame = async (req, res) => {
       quizId,
       userId
     } = req.body;
-   
-    // let userId = req.user
-
-    let game = await gameUtils.initializeSinglePlayerGame(quizId, userId)
-    return res.send(game)
-      
+    
+      let game = await gameUtils.initializeSinglePlayerGame(quizId, userId)
+      return res.send(game)
+  
   } catch (error) {
     // console.log(error);
     return res.status(500).send(error);
