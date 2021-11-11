@@ -16,6 +16,7 @@
  *           properties:
  *             username:
  *               type: string
+ *               example: Must be email address
  *             password:
  *               type: string
  *           required:
@@ -24,8 +25,131 @@
  *     responses:
  *       '200':
  *         description: A successful response
+ *       '500':
+ *          description: An unsuccessfull response
  */
 // Login endpoint Documentation end here
+
+
+
+/**
+*   @swagger
+*   /api/v1/register:
+*       post:
+*           tags:
+*               - Social Media Authentication
+*           description: Post New User
+*           parameters:
+*               - name: reqBody
+*                 description: request body
+*                 in: body
+*                 schema: 
+*                   type: object
+*                   properties:
+*                       accessToken:
+*                           type: string
+*                       refreshToken:
+*                           type: string
+*                       email:
+*                           type: string
+*                       username:
+*                           type: string
+*                       channel:
+*                           type: string
+*                   reqiured:
+*                       - accessToken:
+*                       - refreshToken:
+*                       - email:
+*                       - username:
+*                       - channel:                      
+*           responses:
+*               '200':
+*                   description: A successfull response
+*               '500':
+*                   description: An unsuccessfull response
+*/
+
+
+
+
+/**
+*   @swagger
+*   /auth/signup:
+*       post:
+*           tags:
+*               - Local Authentication
+*           description: Post New User
+*           parameters:
+*               - name: reqBody
+*                 description: request body
+*                 in: body
+*                 schema: 
+*                   type: object
+*                   properties:
+*                       email:
+*                           type: string
+*                       username:
+*                           type: string
+*                       password:
+*                           type: string
+*                       channel:
+*                           type: string
+*                   reqiured:
+*                       - password:
+*                       - email:
+*                       - username:
+*                       - channel:                      
+*           responses:
+*               '200':
+*                   description: A successfull response
+*               '500':
+*                   description: An unsuccessfull response
+*/
+
+
+
+
+/**
+*   @swagger
+*   /api/v1/account:
+*       post:
+*           tags:
+*               - Admin Authentication
+*           description: Post New User
+*           parameters:
+*               - name: reqBody
+*                 description: request body
+*                 in: body
+*                 schema: 
+*                   type: object
+*                   properties:
+*                       email:
+*                           type: string
+*                       username:
+*                           type: string
+*                       password:
+*                           type: string
+*                       confirmPassword:
+*                           type: string
+*                       channel:
+*                           type: string
+*                   reqiured:
+*                       - email:
+*                       - username:
+*                       - password:
+*                       - confirmPassword:
+*                       - channel:                      
+*           responses:
+*               '200':
+*                   description: A successfull response
+*               '500':
+*                   description: An unsuccessfull response
+*/
+
+
+
+
+
 
 // Create Category endpoint documentation start here
 
@@ -50,6 +174,8 @@
  *     responses:
  *       '200':
  *         description: A successful response
+ *       '500':
+ *         description: An unsuccessfull response
  */
 // Create Category endpoint documentation start here
 
@@ -65,6 +191,8 @@
  *     responses:
  *       '200':
  *         description: A successful response
+ *       '500':
+ *         description: An unsuccessfull response
  */
 
 // Get All Categories endpoint documentation end here
@@ -92,6 +220,8 @@
  *     responses:
  *       '200':
  *         description: A successful response
+ *       '500':
+ *         description: An unsuccessful response
  */
 
 //Get Category by Category Id end here
@@ -154,7 +284,9 @@
 *           
 *           responses:
 *               '200':
-*                   description: A successful response            
+*                   description: A successful response  
+*               '500':
+*                   description: An unsuccessful response          
 */
 // Create Quiz documentation start here
 
@@ -191,6 +323,8 @@
 *     responses:
 *       '200':
 *         description: A successful response
+*       '500':
+*         description: An unsuccessful response
 */
 
 // Update Quiz End Here
@@ -205,6 +339,8 @@
  *     responses:
  *       '200':
  *         description: A successful response
+ *       '500':
+ *         description: An unsuccessful response
  */
 
 /**
@@ -217,6 +353,8 @@
  *     responses:
  *       '200':
  *         description: A successful response
+ *       '500':
+ *         description: An unsuccessful response
  */
 
 /**
@@ -240,6 +378,8 @@
  *     responses:
  *       '200':
  *         description: A successful response
+ *       '500':
+ *         description: An unsuccessful response
  */
 
 /**
@@ -263,6 +403,8 @@
  *     responses:
  *       '200':
  *         description: A successful response
+ *       '500':
+ *         description: An unsuccessful response
  */
 
 /**
@@ -303,6 +445,8 @@
  *     responses:
  *       '200':
  *         description: A successful response
+ *       '500':
+ *         description: An unsuccessful response
  */
 
 /**
@@ -315,6 +459,8 @@
  *     responses:
  *       '200':
  *         description: A successful response
+ *       '500':
+ *         description: An unsuccessful response
  */
 
 /**
@@ -338,6 +484,8 @@
  *     responses:
  *       '200':
  *         description: A successful response
+ *       '500':
+ *         description: An unsuccessful response
  */
 
 
@@ -351,6 +499,8 @@
  *     responses:
  *       '200':
  *         description: A successful response
+ *       '500':
+ *         description: An unsuccessful response
  */
 
 /**
@@ -363,6 +513,8 @@
  *     responses:
  *       '200':
  *         description: A successful response
+ *       '500':
+ *         description: An unsuccessful response
  */
 
 /**
@@ -375,6 +527,8 @@
  *     responses:
  *       '200':
  *         description: A successful response
+ *       '500':
+ *         description: An unsuccessful response
  */
 
 /**
@@ -398,6 +552,8 @@
  *     responses:
  *       '200':
  *         description: A successful response
+ *       '500':
+ *         description: An unsuccessful response
  */
 
 /**
@@ -421,6 +577,8 @@
  *     responses:
  *       '200':
  *         description: A successful response
+ *       '500':
+ *         description: An unsuccessful response
  */
 
 /**
@@ -444,6 +602,8 @@
  *     responses:
  *       '200':
  *         description: A successful response
+ *       '500':
+ *         description: An unsuccessful response
  */
 
 /**
