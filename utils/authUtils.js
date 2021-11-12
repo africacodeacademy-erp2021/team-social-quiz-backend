@@ -101,21 +101,20 @@ exports.generateAccessToken = async (email,password) => {
   try {
     let user = new User({
       email: email,
-      password: password
-    })
+      password: password,
+    });
 
-    const token = jwt.sign(user.toJSON(), process.env.secret,{ expiresIn:  60 * 24})
-    const refreshToken = jwt.sign(user.toJSON(), process.env.refreshTokenSecret, { expiresIn: 3600})
+    const token = jwt.sign(user.toJSON(), process.env.secret, {
+      expiresIn: 60 * 24,
+    });
 
     const response = {
-      "status": "Success",
-      "token": token,
-      "refreshToken": refreshToken,
-  }
-  tokenList[refreshToken] = response
-  return Promise.resolve(response);
+      status: "Success",
+      token: token,
+    };
 
-  } catch(error){
+    return Promise.resolve(response);
+  } catch (error) {
     return Promise.reject(error);
   }
 
