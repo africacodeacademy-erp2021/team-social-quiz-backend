@@ -1,6 +1,9 @@
 // Module imports
 const bcrypt = require("bcrypt");
 const { check, validationResult } = require("express-validator");
+const dotenv = require("dotenv");
+const jwt = require('jsonwebtoken')
+const tokenList = {}
 const User = require("../models/User");
 
 /**
@@ -98,7 +101,56 @@ exports.registerAdmin = async (
 };
 
 // incomplete functions
+dotenv.config({
+  path: ".env",
+});
 
-exports.generateAccessToken = async () => {};
+exports.generateAccessToken = async (email,password) => {
+  try {
+    let user = new User({
+      email: email,
+      password: password,
+    });
 
-exports.generateRefreshToken = async () => {};
+    const token = jwt.sign(user.toJSON(), process.env.secret, {
+      expiresIn: 60 * 24,
+    });
+
+    const response = {
+      status: "Success",
+      token: token,
+    };
+
+    return Promise.resolve(response);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+
+};
+
+exports.generateRefreshToken = async (email,password) => {
+  try {
+  
+    let user = new User({
+      email: email,
+      password: password,
+    });
+
+    const refreshToken = jwt.sign(
+      user.toJSON(),
+      process.env.refreshTokenSecret,
+      { expiresIn: process.env.refreshTokenLife }
+    );
+
+    const response = {
+      token: refreshToken,
+    };
+    if (!refreshToken) {
+      return Promise.reject("User not authenticated");
+    } else {
+      return Promise.resolve(response);
+    }
+  }catch (error) {
+    return Promise.reject(error);
+  }
+};
