@@ -31,7 +31,7 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-console.log(swaggerDocs);
+//console.log(swaggerDocs);
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.

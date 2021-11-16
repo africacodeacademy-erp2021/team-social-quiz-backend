@@ -27,10 +27,10 @@ exports.createCategory = async (req, res) =>{
 exports.getCategory = async (req, res) => {
     try {
       const {
-        categoryId
+        category_id
       } = req.query
 
-      let category = await categoryUtils.getCategoryById(categoryId)
+      let category = await categoryUtils.getCategoryById(category_id)
       
       return res.send(category);
       
