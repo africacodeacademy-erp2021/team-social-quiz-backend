@@ -1,5 +1,6 @@
 const { ObjectId } = require('mongodb');
 const Category = require('../models/Category');
+const Quiz = require('../models/Quiz')
 
 
 
@@ -29,13 +30,15 @@ const Category = require('../models/Category');
 /**
  * getCategoryById
  * 
- * @param {String} categoryId 
+ * @param {String} category_id 
  * @returns catrgory object with given category id
  */
-exports.getCategoryById = async (categoryId) =>{
-    let category = await Category.findOne({
-      _id:new ObjectId(categoryId),
-    }).exec()
+exports.getCategoryById = async (category_id) =>{
+    let category = await Quiz.find({
+      category:new ObjectId(category_id),
+    })
+    .populate({path:"category", model:"Category", select:"text"})
+    .exec()
 
     if(category !== null)
       return Promise.resolve(category)

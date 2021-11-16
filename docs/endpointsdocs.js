@@ -183,7 +183,7 @@
 
 /**
  * @swagger
- * /api/v1/catgeories:
+ * /api/v1/categories:
  *   get:
  *     tags:
  *       - Get all Categories
@@ -207,16 +207,16 @@
  *       - Get category by Category Id
  *     description: Get Category by id
  *     parameters:
- *       - name: categoryId
+ *       - name: category_id
  *         description: request query
  *         in: query
  *         schema:
  *           type: object
  *           properties:
- *             categoryId:
+ *             category_id:
  *               type: string
  *           required:
- *             - categoryId
+ *             - category_id
  *     responses:
  *       '200':
  *         description: A successful response
