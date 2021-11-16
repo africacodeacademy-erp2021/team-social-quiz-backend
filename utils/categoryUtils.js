@@ -36,7 +36,9 @@ const Quiz = require('../models/Quiz')
 exports.getCategoryById = async (category_id) =>{
     let category = await Quiz.find({
       category:new ObjectId(category_id),
-    }).exec()
+    })
+    .populate({path:"category", model:"Category", select:"text"})
+    .exec()
 
     if(category !== null)
       return Promise.resolve(category)
